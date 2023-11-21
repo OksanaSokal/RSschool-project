@@ -1,2 +1,181 @@
 @import url('https://fonts.cdnfonts.com/css/inter');
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+  }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #C1B6AD;
+    color: #403F3D;
+    font-size: 16px;
+    font-weight: 400;
+    line-height:  150%;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+a {
+    text-decoration: none;
+    font-weight: 600;
+    color: #403F3D
+  }
+
+li {
+    list-style-type: none;
+  }
+
+.main {
+    flex: 1 1 auto;
+  }
+
+.container {
+    min-height: 100vh;
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #E1D4C9;
+    padding: 20px 40px 40px;
+  }
+
+/* header start */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 17px;
+  }
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+.header__nav {
+    display: flex;
+    margin-top: -8px;
+}
+
+.header__nav > li {
+    margin-right: 40px;
+    position: relative;
+}
+
+.header__nav > li:last-child {
+    margin-right: 0px;
+}
+
+.header__menu {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin-top: -8px;
+}
+
+.header__menu > span {
+    margin-right: 8px;
+}
+
+.link-hover::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 0px;
+    height: 2px;
+    background: #403F3D;
+    left: 50%;
+    bottom: -5px;
+    transform: translateX(-50%);
+    transition: width 0.4s ease-out;
+}
+
+.link-hover:hover::after {
+    width: 100%;
+}
+/* header end */
+
+/* enjoy start */
+.enjoy {
+    position: relative;
+    }
+
+.enjoy__background {
+        height: 644px;
+        border-radius: 40px;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+.enjoy__background > img {
+    object-fit: contain;
+    margin-top: -30px;
+}
+
+.enjoy__box {
+    position: relative;
+    z-index: 2;
+    margin: 0px 0px 0px 100px;
+    padding-top: 100px;
+    max-width: 530px;
+    color: #E1D4C9;
+    }
+
+h1{
+    font-size: 72px;
+    font-weight: 600;
+    line-height: 105%;
+    margin-bottom: 40px;
+}
+
+h1 > span {
+    color: #B0907A;
+    font-style: italic;
+}
+
+.enjoy__text {
+    margin-bottom: 40px;
+}
+
+.enjoy__btn {
+    max-width: 200px;
+    padding: 20px 78px;
+    background-color: #E1D4C9;
+    border-radius: 100px;
+    font-weight: 600;
+    cursor: pointer;
+}
+/* enjoy end */
+
+/* favorite start */
+/* favorite */
+
+/* about start */
+/* about end */
+
+/* download start */
+/* download end */
+
+/* footer start */
+/* footer end */
