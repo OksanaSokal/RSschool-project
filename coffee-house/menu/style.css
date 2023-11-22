@@ -146,7 +146,7 @@ nav {
     line-height: 125%;
     text-align: center;
     max-width: 800px;
-    margin: 0 auto 38px;
+    margin: 0 auto 41px;
 }
 
 .menu__buttons {
@@ -189,7 +189,8 @@ label:last-child {
 }
 
 label span {
-    margin-left: 8px;
+    display: inline-block;
+    margin: 3px 0px 0px 8px;
 }
 .coffee {
     background-color: #665F55;
@@ -235,7 +236,7 @@ label span {
 }
 
 .menu__text {
-    padding: 55px 20px 30px;
+    padding: 60px 20px 18px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -356,13 +357,9 @@ label span {
 }
 
 .footer__contact p > span {
-    margin-left: 10px;
+    /* margin-left: 10px; */
     display: inline-block;
     margin-top: 2px;
-}
-
-.footer__contact svg {
-    margin-top: 1px;
 }
 
 .footer__contact > h4 + p {
@@ -371,5 +368,9 @@ label span {
 
 .footer__contact > h4 + p + p {
     width: 200px;
+}
+
+.time {
+    margin-left: 7px;
 }
 /* footer end */
