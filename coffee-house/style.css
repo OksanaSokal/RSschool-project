@@ -111,8 +111,10 @@ nav {
   transition: width 0.4s ease-out;
 }
 
-.link-hover:hover::after {
-  width: 100%;
+@media (hover: hover) and (pointer: fine) {
+  .link-hover:hover::after {
+    width: 100%;
+  }
 }
 /* header end */
 
@@ -124,6 +126,8 @@ nav {
 
 .enjoy__background {
   height: 644px;
+  /* max-width: 1360px; */
+  width: 100%;
   border-radius: 40px;
   overflow: hidden;
   position: absolute;
@@ -132,12 +136,15 @@ nav {
 }
 
 .enjoy__background > img {
-  object-fit: contain;
-  margin-top: -30px;
+  object-fit: cover;
+  /* margin-top: -30px; */
+  width: 100%;
+  height: 100%;
 }
 
 .enjoy__box {
   position: relative;
+  max-width: 530px;
   z-index: 2;
   margin: 0px 0px 0px 100px;
   padding-top: 100px;
@@ -146,7 +153,7 @@ nav {
 }
 
 h1 {
-  font-size: 72px;
+  font-size: 4.5rem;
   font-weight: 600;
   line-height: 105%;
   margin-bottom: 40px;
@@ -168,13 +175,10 @@ h1 {
 }
 
 .enjoy__btn {
-  /* display: flex; */
-
   max-width: 200px;
   background-color: #e1d4c9;
   border-radius: 100px;
   font-weight: 600;
-  /* cursor: pointer; */
 }
 
 .enjoy__btn a {
@@ -188,13 +192,17 @@ h1 {
   margin-top: -5px;
 }
 
-.enjoy__btn:hover span {
-  margin-right: -3px;
-  transition: all 0.4s ease;
-}
-
-.enjoy__btn:hover span {
-  margin-right: 10px;
+@media (hover: hover) and (pointer: fine) {
+  .enjoy__btn:hover span {
+    margin-right: -3px;
+    transition: all 0.4s ease;
+  }
+  .enjoy__btn:hover span {
+    margin-right: 10px;
+  }
+  .enjoy__btn:hover svg {
+    opacity: 1;
+  }
 }
 
 .enjoy__btn svg {
@@ -202,9 +210,6 @@ h1 {
   transition: all 0.4s ease;
 }
 
-.enjoy__btn:hover svg {
-  opacity: 1;
-}
 /* enjoy end */
 
 /* favorite start */
@@ -263,20 +268,22 @@ h1 {
   left: 30%;
 }
 
-.enjoy__arrow-right:hover {
-  background-color: #665f55;
-}
+@media (hover: hover) and (pointer: fine) {
+  .enjoy__arrow-right:hover {
+    background-color: #665f55;
+  }
 
-.enjoy__arrow-right:hover path {
-  stroke: #e1d4c9;
-}
+  .enjoy__arrow-right:hover path {
+    stroke: #e1d4c9;
+  }
 
-.enjoy__arrow-left:hover {
-  background-color: #665f55;
-}
+  .enjoy__arrow-left:hover {
+    background-color: #665f55;
+  }
 
-.enjoy__arrow-left:hover path {
-  stroke: #e1d4c9;
+  .enjoy__arrow-left:hover path {
+    stroke: #e1d4c9;
+  }
 }
 
 .favorite__box h3 {
@@ -355,8 +362,11 @@ h1 {
   margin-top: -110px;
   object-fit: fill;
 }
-.photo__img img:hover {
-  transform: scale(1);
+
+@media (hover: hover) and (pointer: fine) {
+  .photo__img img:hover {
+    transform: scale(1);
+  }
 }
 
 .one {
@@ -421,14 +431,16 @@ h1 {
   transition: all 0.3s ease;
 }
 
-.download__btn:hover {
-  background-color: #665f55;
-  color: #e1d4c9;
-}
+@media (hover: hover) and (pointer: fine) {
+  .download__btn:hover {
+    background-color: #665f55;
+    color: #e1d4c9;
+  }
 
-.download__btn:hover path {
-  fill: #e1d4c9;
-  color: #e1d4c9;
+  .download__btn:hover path {
+    fill: #e1d4c9;
+    color: #e1d4c9;
+  }
 }
 
 .download__btn svg {
@@ -451,12 +463,12 @@ h1 {
 .download__picture {
   width: 630px;
   height: 630px;
-  margin-right: 10px;
+  margin-right: 13px;
 }
 
 .download__picture img {
-  object-fit: none;
-  margin-top: 10px;
+  margin-top: 14px;
+  transform: scale(1.05);
 }
 /* download end */
 
@@ -496,13 +508,14 @@ h1 {
   transition: all 0.3s ease;
 }
 
-.footer__link:hover {
-  background-color: #e1d4c9;
-  border: #e1d4c9;
-}
-
-.footer__link:hover path {
-  stroke: #403f3d;
+@media (hover: hover) and (pointer: fine) {
+  .footer__link:hover {
+    background-color: #e1d4c9;
+    border: #e1d4c9;
+  }
+  .footer__link:hover path {
+    stroke: #403f3d;
+  }
 }
 
 .footer__link svg {
@@ -544,8 +557,10 @@ h1 {
   border-radius: 3px;
 }
 
-.footer__contact a:hover::after {
-  width: 100%;
+@media (hover: hover) and (pointer: fine) {
+  .footer__contact a:hover::after {
+    width: 100%;
+  }
 }
 
 .footer__contact p {
@@ -573,3 +588,54 @@ h1 {
   width: 200px;
 }
 /* footer end */
+
+@media (max-width: 1355px) {
+  .four img {
+    margin-top: 0px;
+  }
+  .one img {
+    margin-top: 0px;
+  }
+}
+
+@media (max-width: 1259px) {
+  .photo__img img {
+    margin-top: -40px;
+  }
+  .photo__img {
+    height: 590px;
+  }
+  .photo__box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .two {
+    display: none;
+  }
+  .three {
+    display: none;
+  }
+  .download {
+    flex-direction: column;
+    align-items: center;
+  }
+  .download__block h3 {
+    margin-top: 0px;
+  }
+}
+
+@media (max-width: 769px) {
+  .enjoy__box {
+    margin-left: 60px;
+  }
+  .footer {
+    flex-direction: column;
+  }
+  .enjoy__btn svg {
+    opacity: 1;
+  }
+  .enjoy__btn span {
+    margin-right: 10px;
+  }
+}
