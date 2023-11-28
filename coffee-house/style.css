@@ -654,9 +654,13 @@ h1 {
   }
   .download__block h3 {
     margin-top: 0px;
+    max-width: 100%;
   }
   .footer {
     flex-direction: column;
+  }
+  .download__block {
+    width: 100%;
   }
 }
 
@@ -676,9 +680,6 @@ h1 {
   }
   .download__block {
     width: 100%;
-  }
-  .download__block h3 {
-    max-width: 100%;
   }
   .download__picture img {
     margin-top: 0px;
@@ -715,6 +716,9 @@ h1 {
     font-size: 42px;
     line-height: 115%;
   }
+  h1 .italic {
+    font-size: 42px;
+  }
   .title,
   .italic {
     font-size: 32px;
@@ -740,14 +744,56 @@ h1 {
     transform: scale(1.1);
     margin-top: 0;
   }
-  .download__buttons {
-    flex-direction: column;
-    gap: 20px;
-  }
   .footer {
     padding: 60px 16px;
   }
   .container {
-    padding: 40px 16px;
+    padding: 20px 16px 40px;
+  }
+  .header {
+    margin-bottom: 20px;
+  }
+  .enjoy__btn a {
+    padding-top: 20px;
+  }
+  .enjoy {
+    margin-bottom: 150px;
+  }
+  .favorite__image {
+    height: 100%;
+  }
+  .download {
+    gap: 40px;
+  }
+  .footer {
+    gap: 40px;
+  }
+  .footer__contact p:last-child {
+    margin-bottom: 0px;
+  }
+  .download__buttons {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .enjoy__arrow-left {
+    display: none;
+  }
+  .enjoy__arrow-right {
+    display: none;
+  }
+  .photo__img img {
+    transform: scale(1.2);
+  }
+  .download__btn {
+    padding-bottom: 10px;
+  }
+  .enjoy__btn a svg {
+    margin-right: 3px;
+  }
+  .enjoy {
+    margin-bottom: 100px;
   }
 }
