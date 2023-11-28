@@ -76,6 +76,37 @@ li {
   margin-bottom: 17px;
 }
 
+.header__burger {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid #665f55;
+  position: relative;
+  display: none;
+}
+
+.header__burger::before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  background-color: #403f3d;
+  height: 1px;
+  border-radius: 1px;
+  top: 18px;
+  left: 14px;
+}
+
+.header__burger::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  background-color: #403f3d;
+  height: 1px;
+  border-radius: 1px;
+  bottom: 17px;
+  left: 14px;
+}
+
 nav {
   display: flex;
   align-items: center;
@@ -221,7 +252,7 @@ label span {
 .menu__card {
   width: calc(1240px * 0.25);
   border-radius: 40px;
-  /* border: 1px solid #C1B6AD; */
+  height: 506px;
 }
 
 .menu__photo {
@@ -268,6 +299,22 @@ label span {
   font-size: 24px;
   font-weight: 600;
   line-height: 125%;
+}
+
+.menu__download_btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid #665f55;
+  position: relative;
+  margin: 40px auto 0px;
+  display: none;
+}
+
+.menu__download_btn svg {
+  position: absolute;
+  top: 18px;
+  left: 18px;
 }
 
 /* menu end */
@@ -389,3 +436,60 @@ label span {
   margin-left: 7px;
 }
 /* footer end */
+
+@media screen and (max-width: 1439px) {
+  .menu__cards {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 769px) {
+  .header {
+    margin-bottom: 20px;
+  }
+  .header__burger {
+    display: block;
+  }
+  nav {
+    display: none;
+  }
+  .header__menu {
+    display: none;
+  }
+  .hidden__card {
+    display: none;
+  }
+  .menu__download_btn {
+    display: block;
+  }
+  .menu__text {
+    padding-bottom: 20px;
+  }
+  .footer {
+    flex-direction: column;
+    padding: 100px 60px 80px;
+    gap: 100px;
+  }
+  .footer__contact h4 {
+    margin-top: 0px;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .container {
+    padding: 20px 16px 40px;
+  }
+  .menu h1 {
+    font-size: 32px;
+  }
+  .footer__media h3 {
+    font-size: 32px;
+  }
+  label {
+    margin-right: 10px;
+  }
+  .footer {
+    padding: 60px 16px 40px;
+    gap: 40px;
+  }
+}
