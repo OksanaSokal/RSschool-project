@@ -116,6 +116,38 @@ nav {
     width: 100%;
   }
 }
+
+.header__burger {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid #665f55;
+  position: relative;
+  display: none;
+}
+
+.header__burger::before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  background-color: #403f3d;
+  height: 1px;
+  border-radius: 1px;
+  top: 18px;
+  left: 14px;
+}
+
+.header__burger::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  background-color: #403f3d;
+  height: 1px;
+  border-radius: 1px;
+  bottom: 17px;
+  left: 14px;
+}
+
 /* header end */
 
 /* enjoy start */
@@ -589,7 +621,7 @@ h1 {
 }
 /* footer end */
 
-@media (max-width: 1355px) {
+@media screen and (max-width: 1355px) {
   .four img {
     margin-top: 0px;
   }
@@ -598,7 +630,7 @@ h1 {
   }
 }
 
-@media (max-width: 1259px) {
+@media screen and (max-width: 1259px) {
   .photo__img img {
     margin-top: -40px;
   }
@@ -623,19 +655,99 @@ h1 {
   .download__block h3 {
     margin-top: 0px;
   }
-}
-
-@media (max-width: 769px) {
-  .enjoy__box {
-    margin-left: 60px;
-  }
   .footer {
     flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 769px) {
+  .enjoy__box {
+    margin-left: 60px;
   }
   .enjoy__btn svg {
     opacity: 1;
   }
   .enjoy__btn span {
     margin-right: 10px;
+  }
+  .photo__img img {
+    margin-top: -47px;
+    transform: scale(1.06);
+  }
+  .download__block {
+    width: 100%;
+  }
+  .download__block h3 {
+    max-width: 100%;
+  }
+  .download__picture img {
+    margin-top: 0px;
+    transform: scale(1);
+    margin-left: 6px;
+  }
+  .footer {
+    padding: 100px 60px 80px;
+  }
+  .footer__contact h4 {
+    margin-top: 0px;
+  }
+  .enjoy__arrow-left {
+    left: 0px;
+    top: 42.5%;
+  }
+  .enjoy__arrow-right {
+    right: 0px;
+    top: 42.5%;
+  }
+  .header__burger {
+    display: block;
+  }
+  nav {
+    display: none;
+  }
+  .header__menu {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 656px) {
+  h1 {
+    font-size: 42px;
+    line-height: 115%;
+  }
+  .title,
+  .italic {
+    font-size: 32px;
+  }
+  .photo h2 {
+    font-size: 32px;
+  }
+  .enjoy__box {
+    margin-left: 0px;
+    padding: 60px 16px;
+  }
+  .enjoy__background {
+    max-height: 552px;
+  }
+  .download__picture {
+    width: 348px;
+    height: 348px;
+  }
+  .photo__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.1);
+    margin-top: 0;
+  }
+  .download__buttons {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .footer {
+    padding: 60px 16px;
+  }
+  .container {
+    padding: 40px 16px;
   }
 }
