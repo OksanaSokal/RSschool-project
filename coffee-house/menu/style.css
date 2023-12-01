@@ -450,12 +450,12 @@ label span {
   .header__burger {
     display: block;
   }
-  nav {
+  /* nav {
     display: none;
   }
   .header__menu {
     display: none;
-  }
+  } */
   .hidden__card {
     display: none;
   }
@@ -473,6 +473,76 @@ label span {
   .footer__contact h4 {
     margin-top: 0px;
   }
+  /* добавила с первой страницы */
+  body.no_scroll {
+    overflow: hidden;
+  }
+  .header__logo {
+    z-index: 4;
+  }
+  .header__burger {
+    display: block;
+    z-index: 4;
+  }
+  nav {
+    position: absolute;
+  }
+  .header__nav {
+    position: fixed;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+    z-index: 3;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: -100%;
+    background-color: #e1d4c9;
+    padding-top: 160px;
+    margin-top: 0px;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 125%;
+    transition: all 0.4s ease;
+  }
+  .header__nav.open_menu {
+    right: 0;
+  }
+  .header__nav li {
+    margin: 0;
+  }
+  .header__menu {
+    z-index: 4;
+    position: fixed;
+    top: 600px;
+    right: -100%;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 125%;
+    transition: all 0.4s ease;
+    padding-top: 7px;
+  }
+  .header__menu.open_logo {
+    right: 41.5%;
+  }
+  .header__menu svg {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    left: 8px;
+  }
+  .header__menu::after {
+    display: none;
+  }
+  .header__burger.open::before {
+    transform: rotate(45deg);
+    top: 21px;
+  }
+  .header__burger.open::after {
+    transform: rotate(-45deg);
+    top: 21px;
+  }
+  /* добавила с первой страницы */
 }
 
 @media screen and (max-width: 580px) {
