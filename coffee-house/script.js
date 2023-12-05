@@ -3,19 +3,21 @@ const burger = document.querySelector('.header__burger'),
   headerLogo = document.querySelector('.header__menu'),
   headerLinsAll = document.querySelectorAll('li');
 
-export function openBurger() {
+function openBurger() {
   burger.classList.toggle('open');
   headerLinks.classList.toggle('open_menu');
   headerLogo.classList.toggle('open_logo');
   document.querySelector('body').classList.toggle('no_scroll');
 }
 
-export function closeBurger() {
+function closeBurger() {
   burger.classList.remove('open');
   headerLinks.classList.remove('open_menu');
   headerLogo.classList.remove('open_logo');
   document.querySelector('body').classList.toggle('no_scroll');
 }
+
+// export { openBurger, closeBurger };
 
 burger.addEventListener('click', openBurger);
 
@@ -27,10 +29,11 @@ headerLinsAll.forEach((elem) => {
 const prevBtn = document.querySelector('.enjoy__arrow-left'),
   nextBtn = document.querySelector('.enjoy__arrow-right'),
   sliderWrap = document.querySelector('.favorite__box'),
-  slider = sliderWrap.querySelector('.slider'),
-  slides = sliderWrap.querySelectorAll('.favorite__slide'),
-  width = window.getComputedStyle(sliderWrap).width,
+  slider = document.querySelector('.slider'),
+  slides = document.querySelectorAll('.favorite__slide'),
   loadIndicator = document.querySelectorAll('.favorite__load_item');
+
+const width = window.getComputedStyle(sliderWrap).width;
 
 const widthNum = parseInt(width);
 

@@ -222,8 +222,7 @@ label:last-child {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .dessert:hover,
-  .tea:hover {
+  .castom_btn:hover {
     background-color: #665f55;
     color: #e1d4c9;
   }
@@ -233,15 +232,21 @@ label span {
   display: inline-block;
   margin: 3px 0px 0px 8px;
 }
-.coffee {
+
+input:checked + label {
   background-color: #665f55;
   border: 1px solid#665F55;
   color: #e1d4c9;
 }
 
-.coffee img {
+/* .coffee {
+  border: 1px solid#665F55;
+  color: #e1d4c9;
+} */
+
+/* .coffee img {
   background-color: #e1d4c9;
-}
+} */
 
 .menu__cards {
   display: flex;
