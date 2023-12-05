@@ -1,4 +1,4 @@
-import { openBurger } from '../script.js';
+import { openBurger, closeBurger } from '../script.js';
 
 const burger = document.querySelector('.header__burger'),
   headerLinks = document.querySelector('.header__nav'),
@@ -6,3 +6,5 @@ const burger = document.querySelector('.header__burger'),
   headerLinsAll = document.querySelectorAll('li');
 
 burger.addEventListener('click', openBurger);
+
+headerLogo.addEventListener('click', closeBurger);

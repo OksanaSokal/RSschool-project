@@ -514,6 +514,10 @@ label span {
   .header__menu {
     z-index: 4;
     position: fixed;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
     top: 600px;
     right: -100%;
     font-size: 32px;
@@ -522,14 +526,16 @@ label span {
     transition: all 0.4s ease;
     padding-top: 7px;
   }
+  .header__menu > span {
+    margin-right: 13px;
+  }
   .header__menu.open_logo {
-    right: 41.5%;
+    right: 0;
   }
   .header__menu svg {
     width: 40px;
     height: 40px;
     position: relative;
-    left: 8px;
   }
   .header__menu::after {
     display: none;
