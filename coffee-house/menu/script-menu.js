@@ -61,12 +61,14 @@ window.addEventListener('DOMContentLoaded', () => {
         modalWindow.classList.add('open');
 
         document.querySelector('body').classList.add('no_scroll');
+        document.querySelector('body').style.overflow = 'hidden';
         this.createModal();
       });
     }
 
     closeModal() {
       const modalWindow = document.querySelector('.modal');
+
       if (modalWindow.classList.contains('open')) {
         const modalBox = document.querySelector('.modal__box'),
           modalCloseBtn = document.querySelector('.modal__btn_close');
@@ -77,7 +79,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
         modalWindow.addEventListener('click', (event) => {
           if (event.isClickModal) return;
+
           modalWindow.classList.remove('open');
+          document.querySelector('body').classList.remove('no_scroll');
+          document.querySelector('body').style.overflow = '';
           document
             .querySelectorAll('.modal__box')
             .forEach((elem) => elem.remove());
@@ -86,6 +91,7 @@ window.addEventListener('DOMContentLoaded', () => {
         modalCloseBtn.addEventListener('click', () => {
           modalWindow.classList.remove('open');
           document.querySelector('body').classList.remove('no_scroll');
+          document.querySelector('body').style.overflow = '';
 
           document
             .querySelectorAll('.modal__box')
@@ -99,7 +105,7 @@ window.addEventListener('DOMContentLoaded', () => {
         parentModal = document.querySelector('.modal');
       modalBox.classList.add('modal__box');
 
-      modalBox.innerHTML = `<div class="modal__box">
+      modalBox.innerHTML = `
       <div class="modal__photo">
         <img src="${this.scr}" alt="photo" />
       </div>
@@ -108,35 +114,35 @@ window.addEventListener('DOMContentLoaded', () => {
         <p class="modal__text">${this.text}</p>
         <p class="modal_subtitle">Size</p>
         <div class="modal__sizes">
-          <input class="input__modal" type="radio" name="s" id="s" checked>
-          <label for="s" class="modal__size_btn">
+          <input class="input__modal s" type="radio" name="size" id="s" checked>
+          <label for="s" class="modal__size_btn labelS">
             <span class="size_name">S</span>
             <span>${this.sizes.s.size}</span>
           </label>
-          <input class="input__modal" type="radio" name="m" id="m" />
-          <label for="m" class="modal__size_btn">
+          <input class="input__modal m" type="radio" name="size" id="m" />
+          <label for="m" class="modal__size_btn labelM">
             <span class="size_name">M</span>
             <span>${this.sizes.m.size}</span>
           </label>
-          <input class="input__modal" type="radio" name="l" id="l" />
-          <label for="l" class="modal__size_btn">
+          <input class="input__modal l" type="radio" name="size" id="l" />
+          <label for="l" class="modal__size_btn labelL">
             <span class="size_name">L</span>
             <span>${this.sizes.l.size}</span>
           </label>
         </div>
         <p class="modal_subtitle">Additives</p>
         <div class="modal__additives">
-          <input class="input__modal_add" type="radio" name="1" id="1" checked>
-          <label for="1" class="modal__add_btn">
+          <input class="input__modal_add one" type="checkbox" name="add" id="1">
+          <label for="1" class="modal__add_btn ">
             <span class="add_name">1</span>
             <span>${this.additives[0].name}</span>
           </label>
-          <input class="input__modal_add" type="radio" name="2" id="2" />
-          <label for="2" class="modal__add_btn">
+          <input class="input__modal_add two" type="checkbox" name="add" id="2" />
+          <label for="2" class="modal__add_btn ">
             <span class="add_name">2</span>
             <span>${this.additives[1].name}</span>
           </label>
-          <input class="input__modal_add" type="radio" name="3" id="3" />
+          <input class="input__modal_add three" type="checkbox" name="add" id="3" />
           <label for="3" class="modal__add_btn">
             <span class="add_name">L</span>
             <span>${this.additives[2].name}</span>
@@ -184,10 +190,141 @@ window.addEventListener('DOMContentLoaded', () => {
         </div>
         <button class="modal__btn_close">Close</button>
       </div>
-    </div>`;
+    `;
       parentModal.append(modalBox);
 
       this.closeModal();
+
+      this.countTotal();
+    }
+
+    // countTotal() {
+    //   const priceProduct = document.querySelector('.modal__price'),
+    //     sizeS = document.querySelector('.s'),
+    //     sizeM = document.querySelector('.m'),
+    //     sizeL = document.querySelector('.l'),
+    //     modalButtons = document.querySelectorAll('.modal__size_btn'),
+    //     modalAdditionsButtons = document.querySelectorAll('.modal__add_btn'),
+    //     add1 = document.querySelector('.one'),
+    //     add2 = document.querySelector('.two'),
+    //     add3 = document.querySelector('.three'),
+    //     allInputs = document.querySelectorAll(
+    //       '.modal__size_btn, .input__modal_add'
+    //     );
+
+    //   let totalPrice;
+
+    //   modalButtons.forEach((elem) => {
+    //     elem.addEventListener('click', () => {
+    //       if (elem == sizeS) {
+    //         totalPrice = +this.price;
+    //       }
+
+    //       if (elem == sizeM) {
+    //         totalPrice = +this.price + 0.5;
+    //       }
+
+    //       if (elem == sizeL) {
+    //         totalPrice = +this.price + 1.0;
+    //       }
+    //     });
+    //   });
+
+    //   modalAdditionsButtons.forEach((elem) => {
+    //     elem.addEventListener('change', () => {
+    //       if (elem == add1 && elem.checked) {
+    //         totalPrice += +this.additives[0]['add-price'];
+    //       }
+
+    //       if (elem == add2 && elem.checked) {
+    //         totalPrice += +this.additives[1]['add-price'];
+    //       }
+
+    //       if (elem == add3 && elem.checked) {
+    //         totalPrice += +this.additives[2]['add-price'];
+    //       }
+    //     });
+    //   });
+
+    //   console.log(totalPrice);
+    // }
+
+    countTotal() {
+      const priceProduct = document.querySelector('.modal__price'),
+        additionOne = +this.additives[0]['add-price'],
+        additionTwo = +this.additives[1]['add-price'],
+        additionThree = +this.additives[2]['add-price'],
+        sizeBtnS = document.querySelector('.s'),
+        sizeBtnM = document.querySelector('.m'),
+        sizeBtnL = document.querySelector('.l'),
+        labelS = document.querySelector('.labelS'),
+        labelM = document.querySelector('.labelM'),
+        labelL = document.querySelector('.labelL'),
+        add1 = document.querySelector('.one'),
+        add2 = document.querySelector('.two'),
+        add3 = document.querySelector('.three'),
+        allInputs = document.querySelectorAll(
+          '.modal__size_btn, .input__modal_add'
+        );
+
+      let totalPrice;
+      allInputs.forEach((elem) => {
+        elem.addEventListener('click', () => {
+          console.log(elem);
+          if (labelS == elem) {
+            totalPrice = +this.price;
+            return (priceProduct.innerHTML = `$${additions(totalPrice).toFixed(
+              2
+            )}`);
+          }
+          if (labelM == elem) {
+            totalPrice = +this.price + 0.5;
+            return (priceProduct.innerHTML = `$${additions(totalPrice).toFixed(
+              2
+            )}`);
+          }
+          if (labelL == elem) {
+            totalPrice = +this.price + 1.0;
+            return (priceProduct.innerHTML = `$${additions(totalPrice).toFixed(
+              2
+            )}`);
+          }
+
+          if (sizeBtnS.checked) {
+            totalPrice = +this.price;
+            return (priceProduct.innerHTML = `$${additions(totalPrice).toFixed(
+              2
+            )}`);
+          }
+
+          if (sizeBtnM.checked) {
+            totalPrice = +this.price + 0.5;
+            return (priceProduct.innerHTML = `$${additions(totalPrice).toFixed(
+              2
+            )}`);
+          }
+
+          if (sizeBtnL.checked) {
+            totalPrice = +this.price + 1.0;
+            return (priceProduct.innerHTML = `$${additions(totalPrice).toFixed(
+              2
+            )}`);
+          }
+
+          function additions(price) {
+            if (add1.checked) {
+              price += additionOne;
+            }
+            if (add2.checked) {
+              price += additionTwo;
+            }
+            if (add3.checked) {
+              price += additionThree;
+            }
+            return price;
+          }
+        });
+      });
     }
   }
 
@@ -244,9 +381,8 @@ window.addEventListener('DOMContentLoaded', () => {
       modalCloseBtn.addEventListener('click', () => {
         modalWindow.classList.remove('open');
         document.querySelector('body').classList.remove('no_scroll');
+        document.querySelector('body').style.overflow = '';
       });
-    } else {
-      console.log('no');
     }
   }
   closeModal();
