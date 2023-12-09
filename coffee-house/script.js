@@ -33,12 +33,14 @@ const prevBtn = document.querySelector('.enjoy__arrow-left'),
   slides = document.querySelectorAll('.favorite__slide'),
   loadIndicator = document.querySelectorAll('.favorite__load_item');
 
-const width = window.getComputedStyle(sliderWrap).width;
-
-const widthNum = parseInt(width);
+const width = window.getComputedStyle(sliderWrap).width,
+  widthNum = parseInt(width),
+  loadOne = document.querySelector('.load_one'),
+  loadTwo = document.querySelector('.load_two'),
+  loadThree = document.querySelector('.load_three');
 
 let offset = 0,
-  index = 0;
+  index = 1;
 
 slider.style.width = 100 * slides.length + '%';
 
@@ -49,12 +51,17 @@ slides.forEach((slide) => {
 function moveNext() {
   if (offset == (slides.length - 1) * widthNum) {
     offset = 0;
-    index = 0;
   } else {
     offset += widthNum;
-    index += 1;
   }
   slider.style.transform = `translateX(-${offset}px)`;
+
+  if (index == 3) {
+    index = 1;
+  } else {
+    index++;
+  }
+  loadLine(index);
 }
 
 function movePrev() {
@@ -64,12 +71,40 @@ function movePrev() {
     offset -= widthNum;
   }
   slider.style.transform = `translateX(-${offset}px)`;
+
+  if (index == 1) {
+    index = 3;
+  } else {
+    index--;
+  }
+  loadLine(index);
 }
 
 nextBtn.addEventListener('click', moveNext);
 
 prevBtn.addEventListener('click', movePrev);
 
-// const moveSlide = setInterval(moveNext, 6000);
+function loadLine(ind) {
+  if (ind == 1) {
+    loadOne.classList.add('visible');
+    loadTwo.classList.remove('visible');
+    loadThree.classList.remove('visible');
+  }
+  if (ind == 2) {
+    loadOne.classList.remove('visible');
+    loadThree.classList.remove('visible');
+    loadTwo.classList.add('visible');
+  }
+  if (ind == 3) {
+    loadOne.classList.remove('visible');
+    loadTwo.classList.remove('visible');
+    loadThree.classList.add('visible');
+  }
+}
 
-// moveSlide();
+loadLine(index);
+
+loadOne.addEventListener('animationend', moveNext);
+loadTwo.addEventListener('animationend', moveNext);
+loadThree.addEventListener('animationend', moveNext);
+// const moveSlide = setInterval(moveNext, 6000);

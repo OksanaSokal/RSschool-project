@@ -45,7 +45,7 @@ window.addEventListener('DOMContentLoaded', () => {
       const card = document.createElement('div'),
         parent = document.querySelector('.menu__cards');
       card.classList.add('menu__card');
-      card.innerHTML = `<div class="menu__card">
+      card.innerHTML = `
     <div class="menu__photo">
       <img src="${this.scr}" alt="photo" >
     </div>
@@ -53,7 +53,6 @@ window.addEventListener('DOMContentLoaded', () => {
       <h3>${this.title}</h3>
       <p>${this.text}</p>
       <span>$${this.price}</span>
-    </div>
   </div>`;
       parent.append(card);
 
@@ -198,57 +197,6 @@ window.addEventListener('DOMContentLoaded', () => {
       this.countTotal();
     }
 
-    // countTotal() {
-    //   const priceProduct = document.querySelector('.modal__price'),
-    //     sizeS = document.querySelector('.s'),
-    //     sizeM = document.querySelector('.m'),
-    //     sizeL = document.querySelector('.l'),
-    //     modalButtons = document.querySelectorAll('.modal__size_btn'),
-    //     modalAdditionsButtons = document.querySelectorAll('.modal__add_btn'),
-    //     add1 = document.querySelector('.one'),
-    //     add2 = document.querySelector('.two'),
-    //     add3 = document.querySelector('.three'),
-    //     allInputs = document.querySelectorAll(
-    //       '.modal__size_btn, .input__modal_add'
-    //     );
-
-    //   let totalPrice;
-
-    //   modalButtons.forEach((elem) => {
-    //     elem.addEventListener('click', () => {
-    //       if (elem == sizeS) {
-    //         totalPrice = +this.price;
-    //       }
-
-    //       if (elem == sizeM) {
-    //         totalPrice = +this.price + 0.5;
-    //       }
-
-    //       if (elem == sizeL) {
-    //         totalPrice = +this.price + 1.0;
-    //       }
-    //     });
-    //   });
-
-    //   modalAdditionsButtons.forEach((elem) => {
-    //     elem.addEventListener('change', () => {
-    //       if (elem == add1 && elem.checked) {
-    //         totalPrice += +this.additives[0]['add-price'];
-    //       }
-
-    //       if (elem == add2 && elem.checked) {
-    //         totalPrice += +this.additives[1]['add-price'];
-    //       }
-
-    //       if (elem == add3 && elem.checked) {
-    //         totalPrice += +this.additives[2]['add-price'];
-    //       }
-    //     });
-    //   });
-
-    //   console.log(totalPrice);
-    // }
-
     countTotal() {
       const priceProduct = document.querySelector('.modal__price'),
         additionOne = +this.additives[0]['add-price'],
@@ -270,7 +218,6 @@ window.addEventListener('DOMContentLoaded', () => {
       let totalPrice;
       allInputs.forEach((elem) => {
         elem.addEventListener('click', () => {
-          console.log(elem);
           if (labelS == elem) {
             totalPrice = +this.price;
             return (priceProduct.innerHTML = `$${additions(totalPrice).toFixed(
@@ -386,4 +333,35 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
   closeModal();
+
+  const loadBtn = document.querySelector('.menu__download_btn');
+
+  function showCard() {
+    const allCards = document.querySelectorAll('.menu__card');
+    if (allCards.length > 4) {
+      const hiddenCards = [allCards[4], allCards[5], allCards[6], allCards[7]];
+      hiddenCards.forEach((elem) => elem.classList.add('hidden_card'));
+      loadBtn.style.display = '';
+    }
+  }
+
+  showCard();
+
+  coffeeBtn.addEventListener('click', showCard);
+  dessertBtn.addEventListener('click', showCard);
+  teaBtn.addEventListener('click', () => (loadBtn.style.display = 'none'));
+
+  window.addEventListener('resize', () => {
+    const windowWidth = window.innerWidth;
+    if (windowWidth <= 768) {
+      loadBtn.style.display = '';
+    }
+  });
+
+  loadBtn.addEventListener('click', () => {
+    const allCards = document.querySelectorAll('.menu__card');
+    const hiddenCards = [allCards[4], allCards[5], allCards[6], allCards[7]];
+    hiddenCards.forEach((elem) => elem.classList.remove('hidden_card'));
+    loadBtn.style.display = 'none';
+  });
 });

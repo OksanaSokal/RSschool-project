@@ -615,9 +615,10 @@ label:last-child {
   .header__burger {
     display: block;
   }
-  .hidden__card {
+  .hidden_card {
     display: none;
   }
+
   .menu__download_btn {
     display: block;
   }
