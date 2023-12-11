@@ -5,7 +5,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const burger = document.querySelector('.header__burger'),
     headerLinks = document.querySelector('.header__nav'),
     headerLogo = document.querySelector('.header__menu'),
-    headerLinsAll = document.querySelectorAll('li');
+    headerLinksAll = document.querySelectorAll('li');
 
   function openBurger() {
     burger.classList.toggle('open');
@@ -24,6 +24,17 @@ window.addEventListener('DOMContentLoaded', () => {
   burger.addEventListener('click', openBurger);
 
   headerLogo.addEventListener('click', closeBurger);
+
+  headerLinksAll.forEach((elem) => {
+    elem.addEventListener('click', closeBurger);
+  });
+
+  // window.addEventListener('resize', () => {
+  //   const windowWidth = window.innerWidth;
+  //   if (windowWidth <= 768) {
+  //     closeBurger();
+  //   }
+  // });
 
   // create cards
 
@@ -143,7 +154,7 @@ window.addEventListener('DOMContentLoaded', () => {
           </label>
           <input class="input__modal_add three" type="checkbox" name="add" id="3" />
           <label for="3" class="modal__add_btn">
-            <span class="add_name">L</span>
+            <span class="add_name">3</span>
             <span>${this.additives[2].name}</span>
           </label>
         </div>

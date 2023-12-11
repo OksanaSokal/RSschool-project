@@ -1,7 +1,7 @@
 const burger = document.querySelector('.header__burger'),
   headerLinks = document.querySelector('.header__nav'),
   headerLogo = document.querySelector('.header__menu'),
-  headerLinsAll = document.querySelectorAll('li');
+  headerLinksAll = document.querySelectorAll('li');
 
 function openBurger() {
   burger.classList.toggle('open');
@@ -17,11 +17,18 @@ function closeBurger() {
   document.querySelector('body').classList.toggle('no_scroll');
 }
 
+// window.addEventListener('resize', () => {
+//   const windowWidth = window.innerWidth;
+//   if (windowWidth <= 768) {
+//     closeBurger();
+//   }
+// });
+
 // export { openBurger, closeBurger };
 
 burger.addEventListener('click', openBurger);
 
-headerLinsAll.forEach((elem) => {
+headerLinksAll.forEach((elem) => {
   elem.addEventListener('click', closeBurger);
 });
 
@@ -44,9 +51,9 @@ let offset = 0,
 
 slider.style.width = 100 * slides.length + '%';
 
-slides.forEach((slide) => {
-  slide.style.width = width;
-});
+// slides.forEach((slide) => {
+//   slide.style.width = width;
+// });
 
 function moveNext() {
   if (offset == (slides.length - 1) * widthNum) {
@@ -107,4 +114,34 @@ loadLine(index);
 loadOne.addEventListener('animationend', moveNext);
 loadTwo.addEventListener('animationend', moveNext);
 loadThree.addEventListener('animationend', moveNext);
-// const moveSlide = setInterval(moveNext, 6000);
+
+// touch
+
+const favoriteWrap = document.querySelector('.favorite__wrap');
+
+let xStart = null;
+let xEnd = null;
+
+favoriteWrap.addEventListener('touchstart', handleStart, false);
+favoriteWrap.addEventListener('touchmove', handleEnd, false);
+
+function handleStart(event) {
+  event.preventDefault();
+  xStart = event.touches[0].clientX;
+}
+
+function handleEnd(event) {
+  event.preventDefault();
+  xEnd = event.touches[0].clientX;
+  if (!xStart || !xEnd) return;
+
+  if (xStart - xEnd > 0) {
+    moveNext();
+  }
+  if (xStart - xEnd < 0) {
+    movePrev();
+  }
+
+  xStart = null;
+  xEnd = null;
+}
