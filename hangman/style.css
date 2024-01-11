@@ -1,0 +1,78 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  max-width: 1440px;
+  gap: 100px;
+}
+
+.gallows {
+  background-color: antiquewhite;
+  position: relative;
+}
+
+.gallows-image__wrap {
+  max-width: 350px;
+  max-height: 580px;
+}
+
+.gallows-image {
+  width: 100%;
+  object-fit: cover;
+  /* display: none; */
+}
+
+.canvas {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  background-color: blueviolet;
+}
+.keyboard {
+  background-color: beige;
+  max-width: 720px;
+}
+
+.question-box {
+  text-align: center;
+}
+
+.keyboard-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.key {
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  border: 2px solid rgb(59, 58, 58);
+  border-radius: 8px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.key span {
+  display: block;
+}
+
+.letter-wrap {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 100px;
+}
+
+.letter-box {
+  border-bottom: 3px solid black;
+  width: 50px;
+  height: 50px;
+}
