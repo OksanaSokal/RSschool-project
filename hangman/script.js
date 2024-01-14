@@ -69,13 +69,14 @@ keyboardBlock.prepend(questionBox);
 
 let globalIndex;
 
+// function find random word
 function createSpaceForLetters() {
   const length = questions.length;
   const index = Math.floor(Math.random() * length);
   globalIndex = index;
-  const wordArr = Array.from(questions[index][0]);
 
   questionBox.innerHTML = `${questions[index][1]}`;
+  const wordArr = Array.from(questions[index][0]);
 
   return wordArr.forEach((elem) => createWord(elem));
 }
@@ -145,11 +146,19 @@ allLetters.forEach((elem) => {
   );
 });
 
+const arrLetter = document.querySelectorAll('.letter-box');
+
+function updateCounter() {
+  counterPlace.textContent = `${count}`;
+  drawMan();
+}
+
 function checkLetter(elem) {
+  console.log('checkLetter called');
   const datasetKey = elem.dataset.id;
-  const arrLetter = document.querySelectorAll('.letter-box');
   let checkFlag = false;
 
+  const arrLetter = document.querySelectorAll('.letter-box');
   arrLetter.forEach((el, ind) => {
     if (el.dataset.name === datasetKey) {
       arrLetter[ind].innerHTML = `${datasetKey}`;
@@ -160,20 +169,21 @@ function checkLetter(elem) {
 
   if (!checkFlag) {
     count++;
-    counterPlace.innerHTML = `${count}`;
-    drawMan();
+    updateCounter();
   }
   elem.classList.add('disabled-key');
   elem.disabled = true;
+  checkWin();
 }
 
-document.addEventListener('keydown', function (event) {
+function handleDown(event) {
   let key = event.code;
   key = key[key.length - 1];
   let checkFlag = false;
 
   let button;
 
+  const allLetters = document.querySelectorAll('.key');
   allLetters.forEach((el) => {
     if (el.dataset.id === key) {
       el.classList.add('disabled-key');
@@ -183,7 +193,7 @@ document.addEventListener('keydown', function (event) {
 
   const arrLetter = document.querySelectorAll('.letter-box');
   arrLetter.forEach((el, ind) => {
-    if (el.dataset.name == key) {
+    if (el.dataset.name === key) {
       arrLetter[ind].innerHTML = `${key}`;
       arrLetter[ind].classList.add('guessed-letter');
       checkFlag = true;
@@ -192,13 +202,13 @@ document.addEventListener('keydown', function (event) {
 
   if (!checkFlag && !button.disabled) {
     count++;
-    counterPlace.innerHTML = `${count}`;
-    drawMan();
+    updateCounter();
   }
   button.disabled = true;
-});
+  checkWin();
+}
 
-function checkKeyboard() {}
+document.addEventListener('keydown', handleDown);
 
 // draw man canvas
 const canvas = document.querySelector('.canvas');
@@ -287,3 +297,111 @@ function drawMan() {
   if (count === 5) drawLeftLeg();
   if (count === 6) drawRightLeg();
 }
+
+// modal window
+const modalBlock = document.createElement('div');
+modalBlock.classList.add('modal');
+body.prepend(modalBlock);
+
+const modalBox = document.createElement('div');
+modalBox.classList.add('modal-box');
+modalBlock.prepend(modalBox);
+
+const modalTitle = document.createElement('h2');
+modalTitle.classList.add('modal-title');
+modalBox.prepend(modalTitle);
+
+const modalWord = document.createElement('p');
+modalWord.classList.add('modal-word');
+modalBox.append(modalWord);
+
+const modalButton = document.createElement('button');
+modalButton.classList.add('modal-button');
+modalButton.textContent = 'Play again';
+modalBox.append(modalButton);
+
+function openModal() {
+  const modal = document.querySelector('.modal');
+  modal.classList.add('open');
+}
+
+function closeModal() {
+  const modal = document.querySelector('.modal');
+  modal.classList.remove('open');
+}
+
+function checkClass(el) {
+  return el.classList.contains('guessed-letter');
+}
+
+function checkWin() {
+  const arrLetter = document.querySelectorAll('.letter-box');
+  const arrLetterArray = Array.from(arrLetter);
+  const result = arrLetterArray.every(checkClass);
+  if (result) {
+    openModal();
+    inputWinText();
+  }
+
+  if (count === 6) {
+    openModal();
+    inputLossText();
+  }
+  downButton();
+}
+
+function inputWinText() {
+  modalTitle.textContent = 'CONGRATULATIONS! YOU WON!';
+  modalWord.textContent = `Answer: ${questions[globalIndex][0]}`;
+}
+
+function inputLossText() {
+  modalTitle.textContent = 'Sorry! YOU LOSE!';
+  modalWord.textContent = `Answer: ${questions[globalIndex][0]}`;
+}
+
+function downButton() {
+  const button = document.querySelector('.modal-button');
+  button.addEventListener('click', newGame);
+}
+
+function newGame() {
+  closeModal();
+  const box = document.querySelector('.letter-wrap');
+  while (box.firstChild) {
+    box.removeChild(box.firstChild);
+  }
+  createSpaceForLetters();
+
+  const keyboard = document.querySelector('.keyboard-wrap');
+  while (keyboard.firstChild) {
+    keyboard.removeChild(keyboard.firstChild);
+  }
+
+  alphabet.forEach((elem) => {
+    const key = new Key(elem);
+    key.createKey();
+  });
+
+  const allLetters = document.querySelectorAll('.key');
+  allLetters.forEach((elem) => {
+    elem.addEventListener(
+      'click',
+      () => {
+        checkLetter(elem);
+      },
+      { once: true }
+    );
+  });
+
+  document.removeEventListener('keydown', handleDown);
+  document.addEventListener('keydown', handleDown);
+
+  counterPlace.textContent = '0';
+  count = 0;
+  context.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+document.addEventListener('click', () => {
+  console.log(count);
+});
