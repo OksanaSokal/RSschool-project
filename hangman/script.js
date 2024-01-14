@@ -241,7 +241,7 @@ function drawBody() {
 }
 
 // drawBody();
-function drawLeftArm() {
+function drawRightArm() {
   context.beginPath();
   context.moveTo(300, 280);
   context.lineTo(370, 330);
@@ -253,7 +253,7 @@ function drawLeftArm() {
 }
 
 // drawLeftArm();
-function drawRightArm() {
+function drawLeftArm() {
   context.beginPath();
   context.moveTo(300, 280);
   context.lineTo(230, 330);
@@ -265,7 +265,7 @@ function drawRightArm() {
 }
 
 // drawRightArm();
-function drawLeftLeg() {
+function drawRightLeg() {
   context.beginPath();
   context.moveTo(300, 400);
   context.lineTo(370, 450);
@@ -277,7 +277,7 @@ function drawLeftLeg() {
 }
 
 // drawLeftLeg();
-function drawRightLeg() {
+function drawLeftLeg() {
   context.beginPath();
   context.moveTo(300, 400);
   context.lineTo(230, 450);
@@ -356,7 +356,7 @@ function inputWinText() {
 }
 
 function inputLossText() {
-  modalTitle.textContent = 'Sorry! YOU LOSE!';
+  modalTitle.textContent = 'SORRY! YOU LOSE!';
   modalWord.textContent = `Answer: ${questions[globalIndex][0]}`;
 }
 
