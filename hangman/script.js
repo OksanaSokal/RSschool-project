@@ -154,7 +154,6 @@ function updateCounter() {
 }
 
 function checkLetter(elem) {
-  console.log('checkLetter called');
   const datasetKey = elem.dataset.id;
   let checkFlag = false;
 
@@ -221,71 +220,156 @@ let canvasHeight = Math.floor(gallowsPage.getBoundingClientRect().height);
 canvas.width = canvasWidth;
 canvas.height = canvasHeight;
 
+const windowWidth = window.innerWidth;
+let canvasFlag = false;
+
+window.addEventListener('resize', changeWidth);
+
+function changeWidth() {
+  if (windowWidth <= 770) {
+    canvas.width = 380;
+    canvas.height = canvasHeight;
+    canvasFlag = true;
+  } else {
+    canvasFlag = false;
+  }
+
+  console.log(canvasFlag);
+  console.log(windowWidth);
+}
+
+if (windowWidth <= 770) {
+  canvas.width = 380;
+  canvasFlag = true;
+}
+
 function drawHead() {
-  context.beginPath();
-  context.arc(300, 200, 50, 0, Math.PI * 2, true);
-  context.lineWidth = 5;
-  context.stroke();
+  if (canvasFlag) {
+    context.beginPath();
+    context.arc(300, 168, 30, 0, Math.PI * 2, true);
+    context.lineWidth = 5;
+    context.stroke();
+  } else {
+    context.beginPath();
+    context.arc(300, 200, 50, 0, Math.PI * 2, true);
+    context.lineWidth = 5;
+    context.stroke();
+  }
 }
 
 // drawHead();
 function drawBody() {
-  context.beginPath();
-  context.moveTo(300, 250);
-  context.lineTo(300, 400);
-  context.lineWidth = 5;
-  context.closePath();
-  context.fillStyle = 'black';
-  context.fill();
-  context.stroke();
+  if (canvasFlag) {
+    context.beginPath();
+    context.moveTo(300, 200);
+    context.lineTo(300, 280);
+    context.lineWidth = 5;
+    context.closePath();
+    context.fillStyle = 'black';
+    context.fill();
+    context.stroke();
+  } else {
+    context.beginPath();
+    context.moveTo(300, 250);
+    context.lineTo(300, 400);
+    context.lineWidth = 5;
+    context.closePath();
+    context.fillStyle = 'black';
+    context.fill();
+    context.stroke();
+  }
 }
 
 // drawBody();
 function drawRightArm() {
-  context.beginPath();
-  context.moveTo(300, 280);
-  context.lineTo(370, 330);
-  context.lineWidth = 5;
-  context.closePath();
-  context.fillStyle = 'black';
-  context.fill();
-  context.stroke();
+  if (canvasFlag) {
+    context.beginPath();
+    context.moveTo(300, 200);
+    context.lineTo(340, 230);
+    context.lineWidth = 5;
+    context.closePath();
+    context.fillStyle = 'black';
+    context.fill();
+    context.stroke();
+  } else {
+    context.beginPath();
+    context.moveTo(300, 280);
+    context.lineTo(370, 330);
+    context.lineWidth = 5;
+    context.closePath();
+    context.fillStyle = 'black';
+    context.fill();
+    context.stroke();
+  }
 }
 
 // drawLeftArm();
 function drawLeftArm() {
-  context.beginPath();
-  context.moveTo(300, 280);
-  context.lineTo(230, 330);
-  context.lineWidth = 5;
-  context.closePath();
-  context.fillStyle = 'black';
-  context.fill();
-  context.stroke();
+  if (canvasFlag) {
+    context.beginPath();
+    context.moveTo(300, 200);
+    context.lineTo(260, 230);
+    context.lineWidth = 5;
+    context.closePath();
+    context.fillStyle = 'black';
+    context.fill();
+    context.stroke();
+  } else {
+    context.beginPath();
+    context.moveTo(300, 280);
+    context.lineTo(230, 330);
+    context.lineWidth = 5;
+    context.closePath();
+    context.fillStyle = 'black';
+    context.fill();
+    context.stroke();
+  }
 }
 
 // drawRightArm();
 function drawRightLeg() {
-  context.beginPath();
-  context.moveTo(300, 400);
-  context.lineTo(370, 450);
-  context.lineWidth = 5;
-  context.closePath();
-  context.fillStyle = 'black';
-  context.fill();
-  context.stroke();
+  if (canvasFlag) {
+    context.beginPath();
+    context.moveTo(300, 280);
+    context.lineTo(340, 310);
+    context.lineWidth = 5;
+    context.closePath();
+    context.fillStyle = 'black';
+    context.fill();
+    context.stroke();
+  } else {
+    context.beginPath();
+    context.moveTo(300, 400);
+    context.lineTo(370, 450);
+    context.lineWidth = 5;
+    context.closePath();
+    context.fillStyle = 'black';
+    context.fill();
+    context.stroke();
+  }
 }
 
 // drawLeftLeg();
 function drawLeftLeg() {
-  context.beginPath();
-  context.moveTo(300, 400);
-  context.lineTo(230, 450);
-  context.lineWidth = 5;
-  context.closePath();
-  context.fillStyle = 'black';
-  context.fill();
-  context.stroke();
+  if (canvasFlag) {
+    context.beginPath();
+    context.moveTo(300, 280);
+    context.lineTo(260, 310);
+    context.lineWidth = 5;
+    context.closePath();
+    context.fillStyle = 'black';
+    context.fill();
+    context.stroke();
+  } else {
+    context.beginPath();
+    context.moveTo(300, 400);
+    context.lineTo(230, 450);
+    context.lineWidth = 5;
+    context.closePath();
+    context.fillStyle = 'black';
+    context.fill();
+    context.stroke();
+  }
 }
 
 // drawRightLeg();
@@ -401,7 +485,3 @@ function newGame() {
   count = 0;
   context.clearRect(0, 0, canvas.width, canvas.height);
 }
-
-document.addEventListener('click', () => {
-  console.log(count);
-});
