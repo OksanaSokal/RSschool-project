@@ -87,9 +87,9 @@ const counterBox = document.createElement('div');
 counterBox.classList.add('counter-box');
 keyboardBlock.append(counterBox);
 
-const counterPhrase = document.createElement('span');
+const counterPhrase = document.createElement('pre');
 counterPhrase.classList.add('counter-phrase');
-counterPhrase.textContent = 'Incorrect guesses: ';
+counterPhrase.textContent = 'Incorrect guesses:  ';
 counterBox.append(counterPhrase);
 
 const counterTry = document.createElement('span');
