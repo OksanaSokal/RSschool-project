@@ -176,6 +176,7 @@ function checkLetter(elem) {
 }
 
 function handleDown(event) {
+  if (modalBlock.classList.contains('open')) return;
   let key = event.code;
   key = key[key.length - 1];
   let checkFlag = false;
