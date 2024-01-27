@@ -1,0 +1,105 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: row-reverse;
+  gap: 50px;
+}
+
+.title {
+  text-align: center;
+  font-size: 35px;
+  margin: 20px 0px;
+}
+
+.game-box {
+  border: 2px solid black;
+  width: 300px;
+  height: 300px;
+  display: grid;
+  grid-template-areas:
+    'hintrow hintrow'
+    'hintcol table';
+}
+
+.row-clues {
+  grid-area: hintrow;
+  height: 50px;
+  display: flex;
+  justify-content: end;
+}
+
+.column-clues {
+  grid-area: hintcol;
+  width: 50px;
+}
+
+.clue {
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
+.column-clues .clue {
+  justify-content: end;
+  align-items: center;
+}
+
+.field {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-area: table;
+}
+
+.cell {
+  border: 1px solid grey;
+  width: 50px;
+  height: 50px;
+}
+
+.black {
+  background-color: black;
+}
+
+.level-block {
+  font-size: 20px;
+}
+
+.level-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.level-select,
+.game-select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  appearance: none;
+  cursor: pointer;
+}
+.option-level {
+  padding: 10px 15px;
+  transition: background-color 0.3s;
+}
+option:hover {
+  background-color: #f0f0f0;
+}
