@@ -1,32 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
+  background-color: #f2f2ef;
 }
 
 .container {
   max-width: 1440px;
   margin: 0 auto;
-}
-
-.wrapper {
-  display: flex;
-  justify-content: center;
-  flex-direction: row-reverse;
-  gap: 50px;
+  font-family: 'Nunito';
+  padding: 20px;
+  color: #374709;
 }
 
 .title {
   text-align: center;
   font-size: 35px;
   margin: 20px 0px;
+  color: #374709;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  font-size: 20px;
 }
 
 .game-box {
-  border: 2px solid black;
-  width: 300px;
-  height: 300px;
+  border: 2px solid #212517;
   display: grid;
   grid-template-areas:
     'hintrow hintrow'
@@ -35,28 +40,25 @@
 
 .row-clues {
   grid-area: hintrow;
-  height: 50px;
   display: flex;
   justify-content: end;
+  align-items: end;
 }
 
 .column-clues {
   grid-area: hintcol;
-  width: 50px;
-}
-
-.clue {
-  width: 50px;
-  height: 50px;
-  font-size: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: end;
 }
 
 .column-clues .clue {
+  display: flex;
   justify-content: end;
   align-items: center;
+  height: 50px;
+}
+
+.row-clues .clue {
+  text-align: center;
+  width: 50px;
 }
 
 .field {
@@ -65,6 +67,22 @@
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
   grid-area: table;
+  position: relative;
+}
+
+.field-easy {
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+}
+
+.field-medium {
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+}
+
+.field-hard {
+  grid-template-columns: repeat(15, 1fr);
+  grid-template-rows: repeat(15, 1fr);
 }
 
 .cell {
@@ -73,33 +91,102 @@
   height: 50px;
 }
 
+.border-line-vertical {
+  border-right: 2px solid red;
+}
+
+.border-line-horizontal {
+  border-bottom: 2px solid red;
+}
+
+.cell.cross::before,
+.cell.cross::after {
+  content: '';
+  width: 50px;
+  height: 2px;
+  position: absolute;
+  background-color: black;
+  margin-top: 25px;
+}
+.cell.cross::before {
+  transform: rotate(45deg);
+}
+.cell.cross::after {
+  transform: rotate(-45deg);
+}
+
 .black {
   background-color: black;
 }
 
-.level-block {
-  font-size: 20px;
+.list-levels {
+  display: flex;
+  margin-bottom: 20px;
 }
 
-.level-box {
+.level {
+  margin-right: 15px;
+  list-style-type: none;
+  border: 2px solid grey;
+  padding: 10px;
+  transition: all ease 0.5s;
+}
+
+.level:last-child {
+  margin-right: 0px;
+}
+
+.level:hover {
+  background-color: rgb(47, 66, 55);
+  color: white;
+}
+
+.level-checked {
+  background-color: rgb(47, 66, 55);
+  color: white;
+}
+
+input[type='radio'] {
+  display: none;
+}
+
+label {
+  width: 120px;
+  text-align: center;
+  margin-bottom: 10px;
+  transition: all ease 0.5s;
+  color: #374709;
+  display: block;
+}
+
+label:hover {
+  color: #807b66;
+  font-weight: 700;
+}
+
+.level-block-medium {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
-.level-select,
-.game-select {
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #fff;
-  appearance: none;
-  cursor: pointer;
+.level-block-hard {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
 }
-.option-level {
-  padding: 10px 15px;
-  transition: background-color 0.3s;
+
+.level-block-hard label {
+  margin-right: 0px;
 }
-option:hover {
-  background-color: #f0f0f0;
+
+.timer {
+  display: flex;
+  justify-content: center;
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.minutes {
+  margin-left: 7px;
 }
