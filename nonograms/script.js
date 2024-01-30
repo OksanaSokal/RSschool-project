@@ -32,12 +32,9 @@ timer = timer.buildBlock();
 
 let timerText = new Block('span', 'timer-text', timer);
 const timerTextElement = timerText.buildBlock();
-timerText.putContent('Timer:', timerTextElement);
+timerText.putContent('Time:', timerTextElement);
 
 // timer
-
-let seconds = 0;
-let minutes = 0;
 
 let minute = new Block('span', 'minutes', timer);
 minute = minute.buildBlock();
@@ -50,7 +47,10 @@ colon.putContent(':', colonElem);
 let second = new Block('span', 'seconds', timer);
 second = second.buildBlock();
 second.textContent = '00';
-let finalMinute, finalSecond;
+
+// let finalMinute, finalSecond;
+let seconds = 0;
+let minutes = 0;
 
 function setTimerGame() {
   seconds += 1;
@@ -71,21 +71,21 @@ function setTimerGame() {
   if (minutes >= 10 && minutes < 60) {
     minute.textContent = `${minutes}`;
   }
-  finalMinute = minutes;
-  finalSecond = seconds;
+  // finalMinute = minutes;
+  // finalSecond = seconds;
 }
 
-if (finalMinute < 10) {
-  finalMinute = `0${finalMinute}`;
-}
+// if (finalMinute < 10) {
+//   finalMinute = `0${finalMinute}`;
+// }
 
-if (finalMinute == 0) {
-  finalMinute = '00';
-}
+// if (finalMinute == 0) {
+//   finalMinute = '00';
+// }
 
-if (finalSecond < 10) {
-  finalSecond = `0${finalSecond}`;
-}
+// if (finalSecond < 10) {
+//   finalSecond = `0${finalSecond}`;
+// }
 
 // create wrapper-game
 let wrapper = new Block('div', 'wrapper', container);
@@ -352,7 +352,7 @@ const templates = {
     },
   },
 };
-
+let myInterval;
 function createField(obj, level, game) {
   for (let i = 0; i < obj[level][game].size; i++) {
     const clue = document.createElement('div');
@@ -384,7 +384,10 @@ function createField(obj, level, game) {
       const cell = document.createElement('div');
       cell.classList.add('cell');
       cell.addEventListener('click', toggleCell);
-      cell.addEventListener('click', () => checkWin(obj[level][game].picture));
+      cell.addEventListener('click', () => {
+        checkWin(obj[level][game].picture);
+        audioClick.play();
+      });
       cell.addEventListener('contextmenu', putCrossCell);
       field.appendChild(cell);
 
@@ -402,10 +405,16 @@ function createField(obj, level, game) {
   minute.textContent = '00';
   second.textContent = '00';
 
+  let timerFlag = false;
+
   field.addEventListener(
     'click',
     () => {
-      myInterval = setInterval(setTimerGame, 1000);
+      if (!timerFlag) {
+        clearInterval(myInterval);
+        myInterval = setInterval(setTimerGame, 1000);
+        timerFlag = true;
+      }
     },
     { once: true }
   );
@@ -594,6 +603,7 @@ const labels = document.querySelectorAll('label');
 labels.forEach((elem) => {
   elem.addEventListener('click', () => {
     changeTemplate(elem);
+    audioChangeTemplate.play();
   });
 });
 
@@ -610,9 +620,7 @@ function changeTemplate(elem) {
 
   const game = elem.htmlFor;
 
-  if (myInterval) {
-    clearInterval(myInterval);
-  }
+  clearInterval(myInterval);
   seconds = 0;
   minutes = 0;
   minute.textContent = '00';
@@ -657,3 +665,15 @@ function addClasses(item) {
     field.classList.add('field-hard');
   }
 }
+
+let audioClick = new Block('audio', 'audio-click', container);
+audioClick = audioClick.buildBlock();
+audioClick.src = 'audio/click.wav';
+
+let audioWin = new Block('audio', 'audio-win', container);
+audioWin = audioWin.buildBlock();
+audioWin.src = 'audio/win.mp3';
+
+let audioChangeTemplate = new Block('audio', 'audio-change', container);
+audioChangeTemplate = audioChangeTemplate.buildBlock();
+audioChangeTemplate.src = 'audio/flip.mp3';
