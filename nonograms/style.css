@@ -1,11 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
+:root {
+  --background: #f2f2ef;
+  --text-color: #2e2b2e;
+  --border-color: grey;
+  --level-checked: rgb(47, 66, 55);
+  --level-checked-text: #d8d6d8;
+  --input-checked: #58545b;
+  --cell-colored: black;
+}
+
+.dark-theme {
+  --background: #2c2b2b;
+  --text-color: #fff;
+  --level-checked: #62319e;
+  --level-checked-text: black;
+  --cell-colored: #fff;
+}
 * {
+  box-sizing: border-box;
+}
+.body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
-  background-color: #f2f2ef;
+  background-color: var(--background);
+  color: var(--text-color);
 }
 
 .container {
@@ -13,14 +34,12 @@
   margin: 0 auto;
   font-family: 'Nunito';
   padding: 20px;
-  color: #374709;
 }
 
 .title {
   text-align: center;
   font-size: 35px;
   margin: 20px 0px;
-  color: #374709;
 }
 
 .wrapper {
@@ -56,9 +75,20 @@
   height: 50px;
 }
 
+.row-clues .clue-border-line {
+  border-right: 1px solid red;
+}
+.column-clues .clue-border-line {
+  border-bottom: 1px solid red;
+}
+
 .row-clues .clue {
   text-align: center;
   width: 50px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
 }
 
 .field {
@@ -68,6 +98,7 @@
   grid-template-rows: repeat(5, 1fr);
   grid-area: table;
   position: relative;
+  border: 3px solid black;
 }
 
 .field-easy {
@@ -86,7 +117,7 @@
 }
 
 .cell {
-  border: 1px solid grey;
+  border: 1px solid var(--border-color);
   width: 50px;
   height: 50px;
 }
@@ -116,19 +147,20 @@
 }
 
 .black {
-  background-color: black;
+  background-color: var(--cell-colored);
 }
 
 .list-levels {
   display: flex;
   margin-bottom: 20px;
+  padding: 0px;
 }
 
 .level {
   margin-right: 15px;
   list-style-type: none;
-  border: 2px solid grey;
   padding: 10px;
+  border-radius: 40px;
   transition: all ease 0.5s;
 }
 
@@ -137,31 +169,39 @@
 }
 
 .level:hover {
-  background-color: rgb(47, 66, 55);
+  background-color: var(--level-checked);
   color: white;
+  cursor: pointer;
 }
 
 .level-checked {
-  background-color: rgb(47, 66, 55);
+  background-color: var(--level-checked);
   color: white;
 }
 
-input[type='radio'] {
+.level-input-easy,
+.level-input-medium,
+.level-input-hard {
   display: none;
 }
 
-label {
+.level-label {
   width: 120px;
   text-align: center;
   margin-bottom: 10px;
   transition: all ease 0.5s;
-  color: #374709;
+  color: var(--text-color);
   display: block;
 }
 
-label:hover {
-  color: #807b66;
+input:checked + .level-label {
+  color: var(--text-color);
   font-weight: 700;
+}
+
+label:hover {
+  font-weight: 700;
+  cursor: pointer;
 }
 
 .level-block-medium {
@@ -181,12 +221,102 @@ label:hover {
 }
 
 .timer {
-  display: flex;
-  justify-content: center;
   font-size: 25px;
-  margin-bottom: 20px;
+  margin: 20px 0px 20px 8px;
 }
 
 .minutes {
   margin-left: 7px;
+}
+
+.buttons-box {
+  display: flex;
+  justify-content: start;
+  flex-wrap: wrap;
+  max-width: 800px;
+  margin: 0 auto 15px;
+}
+
+.button-theme {
+  font-size: 15px;
+}
+
+.button {
+  padding: 7px;
+  font-size: 15px;
+  margin-left: 8px;
+  cursor: pointer;
+  list-style-type: none;
+  border-radius: 20px;
+  transition: all ease 0.5s;
+  background-color: transparent;
+  color: var(--text-color);
+}
+
+.button:hover {
+  background-color: var(--level-checked);
+  color: var(--level-checked-text);
+}
+
+.about-game {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.modal-box {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(30, 27, 27, 0.8);
+  visibility: hidden;
+  opacity: 0;
+  align-items: center;
+}
+
+.modal-box.open {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal {
+  width: 600px;
+  height: 300px;
+  border-radius: 50px;
+  background-color: var(--level-checked);
+  opacity: 0.9;
+  color: white;
+  font-size: 25px;
+  text-align: center;
+  padding: 30px;
+}
+
+.modal-button {
+  padding: 15px;
+  color: var(--level-checked-text);
+}
+
+.mute-box {
+  width: 70px;
+  height: 70px;
+  background-color: var(--level-checked);
+  border-radius: 50%;
+}
+.mute-img,
+.unmute-img {
+  max-width: 100%;
+}
+
+.table {
+  width: 400px;
+  font-size: 20px;
+  text-align: center;
+  border: 1px solid grey;
+}
+
+.table-cell {
+  border: 1px solid grey;
 }
