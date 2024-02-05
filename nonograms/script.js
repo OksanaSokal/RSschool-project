@@ -21,6 +21,21 @@ class Block {
 let container = new Block('div', 'container', body);
 container = container.buildBlock();
 
+// create mute-button
+let muteButton = new Block('div', 'mute-box', container);
+muteButton = muteButton.buildBlock();
+
+let unmuteImgWhite = new Block('img', 'mute-img', muteButton);
+unmuteImgWhite = unmuteImgWhite.buildBlock();
+unmuteImgWhite.src = 'image/unmute-white.svg';
+unmuteImgWhite.alt = 'icon-sound';
+
+let muteImgWhite = new Block('img', 'unmute-img', muteButton);
+muteImgWhite = muteImgWhite.buildBlock();
+muteImgWhite.src = 'image/mute-white.svg';
+muteImgWhite.alt = 'icon-sound';
+muteImgWhite.style.display = 'none';
+
 // create title
 const title = new Block('h1', 'title', container);
 const titleElement = title.buildBlock();
@@ -101,8 +116,6 @@ timer = timer.buildBlock();
 let timerText = new Block('span', 'timer-text', timer);
 const timerTextElement = timerText.buildBlock();
 timerText.putContent('Time:', timerTextElement);
-
-// timer
 
 let minute = new Block('span', 'minutes', timer);
 minute = minute.buildBlock();
@@ -622,11 +635,15 @@ const templates = {
     },
   },
 };
+
 let myInterval;
 function createField(obj, level, game) {
   for (let i = 0; i < obj[level][game].size; i++) {
     const clue = document.createElement('div');
     clue.classList.add('clue');
+    if (obj[level][game].size > 5) {
+      clue.classList.add('clue-big-field');
+    }
 
     for (let j = 0; j < obj[level][game].rowHints[i].length; j++) {
       const span = document.createElement('span');
@@ -645,6 +662,9 @@ function createField(obj, level, game) {
   for (let i = 0; i < obj[level][game].size; i++) {
     const clue = document.createElement('div');
     clue.classList.add('clue');
+    if (obj[level][game].size > 5) {
+      clue.classList.add('clue-big-field');
+    }
 
     const span = document.createElement('span');
     span.textContent = obj[level][game].columnHints[i].join(' ');
@@ -661,6 +681,9 @@ function createField(obj, level, game) {
     for (let j = 0; j < obj[level][game].size; j++) {
       const cell = document.createElement('div');
       cell.classList.add('cell');
+      if (obj[level][game].size > 5) {
+        cell.classList.add('cell-big-field');
+      }
       cell.addEventListener('click', toggleCell);
       cell.addEventListener('click', () => {
         checkWin(obj[level][game].picture);
@@ -994,6 +1017,20 @@ function resetGame() {
   minutes = 0;
   minute.textContent = '00';
   second.textContent = '00';
+
+  let timerFlag = false;
+
+  field.addEventListener(
+    'click',
+    () => {
+      if (!timerFlag) {
+        clearInterval(myInterval);
+        myInterval = setInterval(setTimerGame, 1000);
+        timerFlag = true;
+      }
+    },
+    { once: true }
+  );
 }
 
 function saveGame() {
@@ -1048,8 +1085,20 @@ function continueGame() {
     }
   }
 
-  minute.textContent = `${savedUserData.minute}`;
-  second.textContent = `${savedUserData.second}`;
+  if (savedUserData.minute < 10) {
+    minute.textContent = `0${savedUserData.minute}`;
+  }
+
+  if (savedUserData.minute == 0) {
+    minute.textContent = '00';
+  }
+
+  if (savedUserData.second < 10) {
+    second.textContent = `0${savedUserData.second}`;
+  }
+  if (savedUserData.second >= 10) {
+    second.textContent = `${savedUserData.second}`;
+  }
 
   minutes = savedUserData.minute;
   seconds = savedUserData.second;
@@ -1057,6 +1106,13 @@ function continueGame() {
   tabs.forEach((elem) => {
     if (elem.dataset.value === savedUserData.level) {
       openTab(elem);
+    }
+  });
+
+  const inputs = document.querySelectorAll('.level-input');
+  inputs.forEach((elem) => {
+    if (elem.id === currentTemplate) {
+      elem.checked = 'checked';
     }
   });
 }
@@ -1083,22 +1139,6 @@ function addTextTime(classMinute, classSecond) {
     SecondPlace.textContent = `${finalSecond}`;
   }
 }
-
-let audioClick = new Block('audio', 'audio-click', container);
-audioClick = audioClick.buildBlock();
-audioClick.src = 'audio/click.wav';
-
-let audioWin = new Block('audio', 'audio-win', container);
-audioWin = audioWin.buildBlock();
-audioWin.src = 'audio/win.mp3';
-
-let audioChangeTemplate = new Block('audio', 'audio-change', container);
-audioChangeTemplate = audioChangeTemplate.buildBlock();
-audioChangeTemplate.src = 'audio/flip.mp3';
-
-let audioButton = new Block('audio', 'audio-button', container);
-audioButton = audioButton.buildBlock();
-audioButton.src = 'audio/button.mp3';
 
 // create modal
 let modalBox = new Block('div', 'modal-box', container);
@@ -1131,21 +1171,6 @@ modalBox.addEventListener('click', (event) => {
 modalButton.addEventListener('click', () => {
   modalBox.classList.remove('open');
 });
-
-// create mute-button
-let muteButton = new Block('div', 'mute-box', container);
-muteButton = muteButton.buildBlock();
-
-let unmuteImgWhite = new Block('img', 'mute-img', muteButton);
-unmuteImgWhite = unmuteImgWhite.buildBlock();
-unmuteImgWhite.src = 'image/unmute-white.svg';
-unmuteImgWhite.alt = 'icon-sound';
-
-let muteImgWhite = new Block('img', 'unmute-img', muteButton);
-muteImgWhite = muteImgWhite.buildBlock();
-muteImgWhite.src = 'image/mute-white.svg';
-muteImgWhite.alt = 'icon-sound';
-muteImgWhite.style.display = 'none';
 
 let soundOff = false;
 
@@ -1189,7 +1214,6 @@ function startRandomGame() {
   });
   currentLevel = chosenLevel;
   currentTemplate = chosenGame;
-  console.log(currentLevel, currentTemplate);
 
   tabs.forEach((elem) => {
     if (elem.dataset.value === chosenLevel) {
@@ -1207,14 +1231,6 @@ function startRandomGame() {
 
 let table = new Block('div', 'table-box', container);
 table = table.buildBlock();
-
-function addResultInScore() {
-  const savedResults = JSON.parse(localStorage.getItem('savedRecords'));
-  // const cellsOfTable = do
-  savedResults.forEach((elem) => {});
-  console.log(savedResults);
-}
-// addResultInScore();
 
 function saveRecordResult() {
   const savedResults = JSON.parse(localStorage.getItem('savedRecords')) || [];
@@ -1285,3 +1301,20 @@ function updateResultsTable() {
   table.innerHTML = tableHTML;
 }
 updateResultsTable();
+
+// create sounds
+let audioClick = new Block('audio', 'audio-click', container);
+audioClick = audioClick.buildBlock();
+audioClick.src = 'audio/click.wav';
+
+let audioWin = new Block('audio', 'audio-win', container);
+audioWin = audioWin.buildBlock();
+audioWin.src = 'audio/win.mp3';
+
+let audioChangeTemplate = new Block('audio', 'audio-change', container);
+audioChangeTemplate = audioChangeTemplate.buildBlock();
+audioChangeTemplate.src = 'audio/flip.mp3';
+
+let audioButton = new Block('audio', 'audio-button', container);
+audioButton = audioButton.buildBlock();
+audioButton.src = 'audio/button.mp3';

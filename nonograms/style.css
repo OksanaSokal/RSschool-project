@@ -8,6 +8,7 @@
   --level-checked-text: #d8d6d8;
   --input-checked: #58545b;
   --cell-colored: black;
+  --line-cross: #215f24;
 }
 
 .dark-theme {
@@ -16,6 +17,7 @@
   --level-checked: #62319e;
   --level-checked-text: black;
   --cell-colored: #fff;
+  --line-cross: #62319e;
 }
 * {
   box-sizing: border-box;
@@ -30,7 +32,7 @@
 }
 
 .container {
-  max-width: 1440px;
+  max-width: 1300px;
   margin: 0 auto;
   font-family: 'Nunito';
   padding: 20px;
@@ -47,6 +49,7 @@
   justify-content: center;
   gap: 30px;
   font-size: 20px;
+  margin-bottom: 40px;
 }
 
 .game-box {
@@ -66,6 +69,7 @@
 
 .column-clues {
   grid-area: hintcol;
+  padding-top: 3px;
 }
 
 .column-clues .clue {
@@ -75,11 +79,20 @@
   height: 50px;
 }
 
+.column-clues span {
+  margin-right: 3px;
+}
+
 .row-clues .clue-border-line {
-  border-right: 1px solid red;
+  border-right: 2px solid var(--line-cross);
 }
 .column-clues .clue-border-line {
-  border-bottom: 1px solid red;
+  border-bottom: 2px solid var(--line-cross);
+}
+
+.column-clues .clue-big-field {
+  height: 25px;
+  font-size: 15px;
 }
 
 .row-clues .clue {
@@ -91,6 +104,11 @@
   justify-content: end;
 }
 
+.row-clues .clue-big-field {
+  width: 25px;
+  font-size: 15px;
+}
+
 .field {
   display: grid;
   justify-content: center;
@@ -98,7 +116,8 @@
   grid-template-rows: repeat(5, 1fr);
   grid-area: table;
   position: relative;
-  border: 3px solid black;
+  border-top: 3px solid black;
+  border-left: 3px solid black;
 }
 
 .field-easy {
@@ -120,24 +139,32 @@
   border: 1px solid var(--border-color);
   width: 50px;
   height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.cell-big-field {
+  width: 25px;
+  height: 25px;
+  font-size: 15px;
+}
 .border-line-vertical {
-  border-right: 2px solid red;
+  border-right: 2px solid var(--line-cross);
 }
 
 .border-line-horizontal {
-  border-bottom: 2px solid red;
+  border-bottom: 2px solid var(--line-cross);
 }
 
 .cell.cross::before,
 .cell.cross::after {
   content: '';
-  width: 50px;
+  width: 25px;
   height: 2px;
   position: absolute;
-  background-color: black;
-  margin-top: 25px;
+  background-color: var(--cell-colored);
+  /* margin-top: 12.5px; */
 }
 .cell.cross::before {
   transform: rotate(45deg);
@@ -251,6 +278,7 @@ label:hover {
   transition: all ease 0.5s;
   background-color: transparent;
   color: var(--text-color);
+  margin-bottom: 10px;
 }
 
 .button:hover {
@@ -300,16 +328,20 @@ label:hover {
 }
 
 .mute-box {
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
   background-color: var(--level-checked);
   border-radius: 50%;
+  cursor: pointer;
 }
 .mute-img,
 .unmute-img {
   max-width: 100%;
 }
-
+.table-box {
+  margin: 0 auto;
+  max-width: 800px;
+}
 .table {
   width: 400px;
   font-size: 20px;
@@ -319,4 +351,22 @@ label:hover {
 
 .table-cell {
   border: 1px solid grey;
+}
+
+@media (max-width: 1000px) {
+  .wrapper {
+    flex-direction: column;
+    align-items: center;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .table {
+    margin: 20px auto 0;
+  }
+  .buttons-box {
+    max-width: 530px;
+  }
+  .about-game {
+    max-width: 500px;
+  }
 }
