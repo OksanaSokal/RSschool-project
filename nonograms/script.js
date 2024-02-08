@@ -753,6 +753,10 @@ function putCrossCell(event) {
   event.preventDefault();
   const cell = event.target;
   cell.classList.toggle('cross');
+  if (cell.classList.contains('black')) {
+    cell.classList.remove('black');
+    cell.classList.add('cross');
+  }
   if (!soundOff) audioClick.play();
 }
 
