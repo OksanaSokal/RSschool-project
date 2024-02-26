@@ -10,5 +10,5 @@ export interface SourceItem {
 
 export interface SourceData {
     status: 'ok' | 'error';
-    sources: SourceItem[];
+    sources?: SourceItem[];
 }

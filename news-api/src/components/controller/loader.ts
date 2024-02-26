@@ -1,3 +1,4 @@
+import { NewsData } from '../../types/data';
 import { Callback, Options } from '../../types/loader-type';
 class Loader {
     constructor(
@@ -7,7 +8,7 @@ class Loader {
 
     public getResp(
         { endpoint, options = {} }: { endpoint: string; options?: Options },
-        callback = (): void => {
+        callback: Callback<NewsData> = (): void => {
             console.error('No callback for GET response');
         }
     ): void {
@@ -35,7 +36,7 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    public load(method: string, endpoint: string, callback: Callback, options = {}): void {
+    public load(method: string, endpoint: string, callback: Callback<NewsData>, options = {}): void {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())
