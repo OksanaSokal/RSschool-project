@@ -1,7 +1,7 @@
-import { Options } from '../../types/loader-type';
+import { Callback, Options } from '../../types/loader-type';
 class Loader {
     constructor(
-        public baseLink: string,
+        public baseLink: string | undefined,
         public options: Options
     ) {}
 
@@ -35,7 +35,7 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    public load(method: string, endpoint: string, callback: (args: unknown) => void, options = {}): void {
+    public load(method: string, endpoint: string, callback: Callback, options = {}): void {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())
