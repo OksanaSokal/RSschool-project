@@ -11,7 +11,7 @@ class Loader {
         callback: Callback<NewsData> = (): void => {
             console.error('No callback for GET response');
         }
-    ): void {
+    ) {
         this.load('GET', endpoint, callback, options);
     }
 

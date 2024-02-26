@@ -2,8 +2,8 @@ import Loader from './loader';
 
 class AppLoader extends Loader {
     constructor() {
-        super(process.env.API_URL, {
-            apiKey: process.env.API_KEY,
+        super('https://rss-news-api.onrender.com/', {
+            apiKey: 'ef1d7367390045d89e20a852550f9711',
         });
     }
 }
