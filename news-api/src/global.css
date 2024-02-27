@@ -1,7 +1,9 @@
 body {
     color: #fff;
-    background: #17181c;
+    background: #393c48;
     font-family: sans-serif;
+    max-width: 1920px;
+    margin: 0 auto;
 }
 
 header {
@@ -14,22 +16,65 @@ header h1 {
 }
 
 footer {
-    height: 100px;
     display: flex;
+    gap: 20px;
     align-items: center;
     justify-content: center;
+    margin-top: 40px;
+    color: #212517;
 }
 footer .copyright {
     font-size: 14px;
-    color: #333;
     text-align: center;
 }
 footer .copyright a {
-    color: #444;
+    color: #212517;
 }
 footer .copyright a:hover {
-    color: #555;
+    color: #212517;
 }
 footer .copyright:before {
     content: '©';
+}
+
+footer .github {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+footer .github a {
+    text-decoration: none;
+    color: #212517;
+    padding: 5px;
+    transition: all ease 0.4s;
+}
+
+footer .github a:hover {
+    border-color: #3fcc59;
+    box-shadow: 0 0.5em 0.5em -0.4em #3fcc59;
+    transform: translateY(-0.25em);
+}
+
+footer .logo__item {
+    margin: 30px;
+}
+
+footer .logo {
+    display: block;
+    width: 150px;
+    height: 60px;
+}
+
+footer .logo img {
+    max-width: 100%;
+}
+
+@media (max-width: 768px) {
+    footer {
+        flex-direction: column;
+        gap: 0;
+    }
+    footer .logo__item {
+        margin: 0;
+    }
 }
