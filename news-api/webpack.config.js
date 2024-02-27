@@ -1,9 +1,3 @@
-// import path from 'path';
-// import merge from 'webpack-merge';
-// import HtmlWebpackPlugin from 'html-webpack-plugin';
-// import { CleanWebpackPlugin } from 'clean-webpack-plugin';
-// import DotenvWebpackPlugin from 'dotenv-webpack';
-// import ESLintWebpackPlugin from 'eslint-webpack-plugin';
 const path = require('path');
 const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');

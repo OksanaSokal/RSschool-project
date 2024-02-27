@@ -17,3 +17,5 @@ export interface NewsData {
     totalResults: number;
     articles: NewsItem[];
 }
+
+export type Elem = HTMLTemplateElement | null;
