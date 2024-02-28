@@ -15,6 +15,14 @@ class Loader {
         this.load('GET', endpoint, callback, options);
     }
 
+    public load(method: string, endpoint: string, callback: Callback<NewsData>, options = {}): void {
+        fetch(this.makeUrl(options, endpoint), { method })
+            .then(this.errorHandler)
+            .then((res) => res.json())
+            .then((data) => callback(data))
+            .catch((err) => console.error(err));
+    }
+
     private errorHandler(res: Response) {
         if (!res.ok) {
             if (res.status === 401 || res.status === 404)
@@ -34,14 +42,6 @@ class Loader {
         });
 
         return url.slice(0, -1);
-    }
-
-    public load(method: string, endpoint: string, callback: Callback<NewsData>, options = {}): void {
-        fetch(this.makeUrl(options, endpoint), { method })
-            .then(this.errorHandler)
-            .then((res) => res.json())
-            .then((data) => callback(data))
-            .catch((err) => console.error(err));
     }
 }
 
