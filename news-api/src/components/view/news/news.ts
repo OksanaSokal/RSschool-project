@@ -1,5 +1,6 @@
 import { Elem, NewsItem } from '../../../types/data';
 import './news.css';
+import way from '../../img/news_placeholder.png';
 
 class News {
     public draw(data: NewsItem[]) {
@@ -21,7 +22,9 @@ class News {
             }
 
             const newsPhoto: Elem = newsClone.querySelector('.news__meta-photo');
-            if (newsPhoto) newsPhoto.style.backgroundImage = `url(${item.urlToImage || '../img/news_placeholder.png'})`;
+            if (newsPhoto) {
+                newsPhoto.style.backgroundImage = `url(${item.urlToImage || way})`;
+            }
             const newsAuthor: Elem = newsClone.querySelector('.news__meta-author');
             if (newsAuthor) newsAuthor.textContent = item.author || item.source.name;
 

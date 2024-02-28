@@ -1,7 +1,6 @@
 import { NewsData } from '../../types/data';
 import { Callback, Options } from '../../types/loader-type';
-import img from '../img/load.gif';
-
+import img from '../img/spinner.svg';
 class Loader {
     constructor(
         public baseLink: string | undefined,
