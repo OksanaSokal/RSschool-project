@@ -14,10 +14,11 @@ class AppController extends AppLoader {
     }
 
     public getNews(e: Event, callback: Callback<NewsData>): void {
+        const imageBlock: HTMLElement | null = document.querySelector('.loading__img');
+        if (imageBlock) imageBlock.style.display = 'block';
+
         let target: EventTarget | null = e.target;
         const newsContainer: EventTarget | null = e.currentTarget;
-        console.log(target);
-        console.log(newsContainer);
 
         while (target !== newsContainer) {
             if ((<Element>target)!.classList.contains('source__item')) {

@@ -1,5 +1,7 @@
 import { NewsData } from '../../types/data';
 import { Callback, Options } from '../../types/loader-type';
+import img from '../img/load.gif';
+
 class Loader {
     constructor(
         public baseLink: string | undefined,
@@ -12,6 +14,15 @@ class Loader {
             console.error('No callback for GET response');
         }
     ) {
+        const image: HTMLImageElement | null = document.createElement('img');
+        if (image) image.src = img;
+
+        const imageBlock: HTMLElement | null = document.querySelector('.loading__img');
+        if (imageBlock) {
+            while (imageBlock?.firstChild) imageBlock.removeChild(imageBlock.firstChild);
+            imageBlock.append(image);
+        }
+
         this.load('GET', endpoint, callback, options);
     }
 

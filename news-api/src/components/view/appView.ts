@@ -14,6 +14,9 @@ export class AppView {
     public drawNews(data: NewsData) {
         const values: NewsItem[] = data?.articles ? data?.articles : [];
         this.news.draw(values);
+
+        const imageBlock: HTMLElement | null = document.querySelector('.loading__img');
+        if (imageBlock) imageBlock.style.display = 'none';
     }
 
     public drawSources(data: SourceData) {
