@@ -17,6 +17,7 @@
     "license": "ISC",
     "homepage": "",
     "devDependencies": {
+        "@types/estree": "^1.0.5",
         "@typescript-eslint/eslint-plugin": "^7.0.2",
         "@typescript-eslint/parser": "^7.0.2",
         "clean-webpack-plugin": "^4.0.0",

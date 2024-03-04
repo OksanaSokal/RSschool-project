@@ -4,14 +4,14 @@ import News from './news/news';
 import Sources from './sources/sources';
 
 export class AppView {
-    public news;
-    public sources;
+    public news: News;
+    public sources: Sources;
     constructor() {
         this.news = new News();
         this.sources = new Sources();
     }
 
-    public drawNews(data: NewsData) {
+    public drawNews(data: NewsData): void {
         const values: NewsItem[] = data?.articles ? data?.articles : [];
         this.news.draw(values);
 
@@ -19,7 +19,7 @@ export class AppView {
         if (imageBlock) imageBlock.style.display = 'none';
     }
 
-    public drawSources(data: SourceData) {
+    public drawSources(data: SourceData): void {
         const values: SourceItem[] = data?.sources ? data?.sources : [];
         this.sources.draw(values);
     }

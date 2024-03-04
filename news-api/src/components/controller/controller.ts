@@ -22,14 +22,14 @@ class AppController extends AppLoader {
 
         while (target !== newsContainer) {
             if ((<Element>target)!.classList.contains('source__item')) {
-                const sourceId = (<Element>target!).getAttribute('data-source-id') as string;
+                const sourceId = (<Element>target!).getAttribute('data-source-id') ?? '';
                 if ((<Element>newsContainer)!.getAttribute('data-source') !== sourceId) {
-                    (<Element>newsContainer)!.setAttribute('data-source', sourceId as string);
+                    (<Element>newsContainer)!.setAttribute('data-source', sourceId);
                     super.getResp(
                         {
                             endpoint: 'everything',
                             options: {
-                                sources: sourceId as string,
+                                sources: sourceId,
                             },
                         },
                         callback

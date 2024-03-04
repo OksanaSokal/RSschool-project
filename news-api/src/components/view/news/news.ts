@@ -3,7 +3,7 @@ import './news.css';
 import way from '../../img/news_placeholder.png';
 
 class News {
-    public draw(data: NewsItem[]) {
+    public draw(data: NewsItem[]): void {
         const news: NewsItem[] = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
         const fragment: DocumentFragment = document.createDocumentFragment();
