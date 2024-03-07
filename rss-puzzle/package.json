@@ -21,7 +21,7 @@
     }
   },
   "validate-branch-name": {
-    "pattern": "^(feat|fix|refactor|chore)/[A-Z]+-[0-9]+_.+$",
+    "pattern": "^(feat|fix|refactor|chore)/[A-Z]+-[A-Z]+-[0-9]+_[a-zA-Z]+$",
     "errorMsg": "the branch name does not match the format"
   },
   "keywords": [],
