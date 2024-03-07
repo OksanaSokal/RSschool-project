@@ -11,7 +11,8 @@
     "lint:fix": "node node_modules/eslint/bin/eslint.js ./src --fix",
     "format": "prettier --write .",
     "ci:format": "prettier --check .",
-    "prepare": "cd .. && husky rss-puzzle/.husky"
+    "prepare": "cd .. && husky rss-puzzle/.husky",
+    "validate-branch-name": "validate-branch-name"
   },
   "husky": {
     "hooks": {
