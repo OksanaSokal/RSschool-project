@@ -51,7 +51,7 @@ export default (env: EnvVariables) => {
           port: env.port ?? 3000,
           open: true,
         }
-      : (undefined as DevServerConfiguration | undefined),
+      : (undefined as DevServerConfiguration),
   };
   return config;
 };
