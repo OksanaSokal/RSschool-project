@@ -1,13 +1,13 @@
-import MainView from './pages/main/main'
+import MainView from './pages/main/main';
 import HeaderView from './pages/header/header';
 import WrapperView from './pages/wrapper/wrapper';
 
 export default class App {
   constructor() {
-    this.createView();
+    App.createView();
   }
 
-  public createView() {
+  static createView() {
     const wrapperElement = new WrapperView();
     const mainElement = new MainView();
     const headerElement = new HeaderView();
