@@ -19,10 +19,10 @@ export default class WrapperView extends View {
       callback: null,
     };
     super(params);
-    this.addImage();
+    WrapperView.addImage();
   }
 
-  public addImage() {
+  static addImage() {
     const image = document.createElement('img');
     image.src = img;
     document.body.append(image);

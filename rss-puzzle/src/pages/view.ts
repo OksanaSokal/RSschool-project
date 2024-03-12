@@ -7,14 +7,14 @@ export default class View {
   public elementCreator: ElementCreator;
 
   constructor(params: ElementParam) {
-    this.elementCreator = this.createView(params);
+    this.elementCreator = View.createView(params);
   }
 
   public getHTMLElement(): HTMLElement | HTMLInputElement {
     return this.elementCreator.getElement();
   }
 
-  public createView(params: ElementParam): ElementCreator {
+  static createView(params: ElementParam): ElementCreator {
     const elementParams: ElementParam = {
       tag: params.tag,
       className: params.className,

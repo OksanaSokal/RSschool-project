@@ -60,7 +60,6 @@ export default class MainView extends View {
       callback: null,
     };
     const button: ButtonView = new ButtonView(paramsButton);
-    button.setCallback();
     createForm.addElement(button);
   }
 }

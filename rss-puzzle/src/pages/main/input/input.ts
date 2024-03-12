@@ -8,6 +8,10 @@ const CssClasses = {
   button: 'button',
 };
 
+interface EventListener {
+  (): void;
+}
+
 export default class InputView extends ElementCreator {
   public inputElement: HTMLInputElement;
 
@@ -42,7 +46,7 @@ export default class InputView extends ElementCreator {
 
   public setCallback(callback: EventListener | null = null) {
     if (typeof callback === 'function') {
-      this.element.addEventListener('change', (event) => callback(event));
+      this.element.addEventListener('change', () => callback());
     }
   }
 }
