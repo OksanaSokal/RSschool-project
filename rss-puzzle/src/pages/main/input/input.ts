@@ -8,7 +8,7 @@ const CssClasses = {
   button: 'button',
 };
 
-interface EventListener {
+export interface EventListener {
   (): void;
 }
 

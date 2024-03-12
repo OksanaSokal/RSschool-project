@@ -1,6 +1,7 @@
 import ElementCreator from '../../elementCreator';
 import { ElementParam } from '../main-type';
 import './button.css';
+import { EventListener } from '../input/input';
 
 const CssClasses = {
   button: 'button',
@@ -36,7 +37,7 @@ export default class ButtonView extends ElementCreator {
         });
 
         if (allInputsFilled) {
-          this.element.addEventListener('submit', (event) => callback(event));
+          this.element.addEventListener('submit', () => callback());
         }
       });
     }
