@@ -41,7 +41,8 @@ export default class MainView extends View {
       callback: null,
     };
     const firstName: InputView = new InputView(paramsFirstName);
-
+    firstName.addLength('3');
+    firstName.setCallback();
     createForm.addElement(firstName);
 
     const paramsLastName: ElementParam = {
@@ -51,6 +52,9 @@ export default class MainView extends View {
       callback: null,
     };
     const lastName: InputView = new InputView(paramsLastName);
+    lastName.addLength('4');
+    lastName.checkValue();
+    lastName.setCallback();
     createForm.addElement(lastName);
 
     const paramsButton: ElementParam = {
