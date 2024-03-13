@@ -25,6 +25,16 @@ export default class ButtonView extends ElementCreator {
     this.buttonElement.textContent = buttonText;
   }
 
+  // public checkInputs() {
+  //   const inputs = document.querySelectorAll('input');
+  //   let allInputsFilled = true;
+  //   inputs.forEach((input) => {
+  //     if (!input.value) {
+  //       allInputsFilled = false;
+  //     }
+  //   });
+  // }
+
   public setCallback(callback: EventListener | null = null) {
     if (typeof callback === 'function') {
       this.buttonElement.addEventListener('click', () => {
