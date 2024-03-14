@@ -18,11 +18,6 @@
   color: rgb(49, 27, 30);
 }
 
-/* .error-box {
-  display: flex;
-  justify-content: end;
-} */
-
 .input-error {
   color: red;
   font-size: 12px;
