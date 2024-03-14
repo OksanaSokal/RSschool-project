@@ -1,11 +1,6 @@
 import ElementCreator from '../../elementCreator';
 import { ElementParam } from '../main-type';
 import './button.css';
-import { EventListener } from '../input/input';
-
-const CssClasses = {
-  button: 'button',
-};
 
 const buttonText: string = 'Login';
 
@@ -16,8 +11,9 @@ export default class ButtonView extends ElementCreator {
     this.element = document.createElement('div');
     this.setCallback(params.callback);
     this.buttonElement = document.createElement('button');
-    this.buttonElement.classList.add(CssClasses.button);
+    this.buttonElement.classList.add('button');
     this.buttonElement.textContent = buttonText;
+    this.buttonElement.disabled = true;
     this.element.append(this.buttonElement);
   }
 
@@ -25,31 +21,18 @@ export default class ButtonView extends ElementCreator {
     this.buttonElement.textContent = buttonText;
   }
 
-  // public checkInputs() {
-  //   const inputs = document.querySelectorAll('input');
-  //   let allInputsFilled = true;
-  //   inputs.forEach((input) => {
-  //     if (!input.value) {
-  //       allInputsFilled = false;
-  //     }
-  //   });
-  // }
-
-  public setCallback(callback: EventListener | null = null) {
-    if (typeof callback === 'function') {
-      this.buttonElement.addEventListener('click', () => {
-        const inputs = document.querySelectorAll('input');
-        let allInputsFilled = true;
-        inputs.forEach((input) => {
-          if (!input.value) {
-            allInputsFilled = false;
-          }
-        });
-
-        if (allInputsFilled) {
-          this.element.addEventListener('submit', () => callback());
-        }
-      });
+  public addCallback(firstEl: boolean | null) {
+    if (firstEl) {
+      this.buttonElement.classList.add('button-open');
+      this.buttonElement.disabled = false;
     }
+  }
+
+  public static addLocalStorage(firstname: string, lastname: string): void {
+    const user = {
+      name: firstname,
+      surname: lastname,
+    };
+    localStorage.setItem('user', JSON.stringify(user));
   }
 }

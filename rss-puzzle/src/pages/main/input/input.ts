@@ -21,7 +21,7 @@ export default class InputView extends ElementCreator {
 
   createElement(params: ElementParam) {
     this.element = document.createElement('div');
-    // this.setCallback(params.callback);
+    // this.setCallback();
     this.inputElement = document.createElement('input');
     this.inputElement.classList.add(CssClasses.input);
     this.inputElement.id = params.text;
@@ -48,50 +48,36 @@ export default class InputView extends ElementCreator {
     this.inputElement.title = 'This field is required';
   }
 
-  public setCallback() {
-    this.inputElement.addEventListener('blur', () => {
+  public addCallback() {
+    let flag;
+    this.inputElement.addEventListener('input', () => {
+      flag = true;
       const { value } = this.inputElement;
       const regex = /^[A-Z][-a-zA-Z]+$/;
       const { min } = this.inputElement;
       if (!regex.test(value)) {
         this.errorBox.textContent = 'Value must contain only Latin letters and hyphens';
+        flag = false;
       }
-      if (value.charAt(0) !== value.charAt(0).toUpperCase()) {
+      if (value[0] !== value.charAt(0).toUpperCase()) {
         this.errorBox.textContent = 'Value must start with an uppercase letter';
+        flag = false;
       }
       if (value.length < +min) {
         this.errorBox.textContent = `Value must be at least ${min} characters long.`;
+        flag = false;
       }
       if (value.length < +min) {
         this.errorBox.textContent = `Value must be at least ${min} characters long`;
+        flag = false;
       }
+      if (flag) this.errorBox.textContent = '';
     });
+    return flag;
   }
 
   public addLength(value: string) {
-    this.inputElement.setAttribute('minlength', value);
-  }
-
-  public checkLength() {
+    this.inputElement.min = value;
     return this.inputElement.min;
-  }
-
-  public checkValue() {
-    const { value } = this.inputElement;
-    const regex = /^[A-Z][-a-zA-Z]+$/;
-    if (!regex) {
-      const errorBox = document.createElement('div');
-      errorBox.classList.add('input-error');
-      this.element.classList.add('error-box');
-      const { min } = this.inputElement;
-      if (!regex.test(value)) {
-        errorBox.textContent = 'Value must start with a capital letter';
-        this.element.append(errorBox);
-      } else if (value.length < +min) {
-        errorBox.textContent = `Value must be at least ${min} characters long.`;
-        this.element.classList.add('error-box');
-        this.element.append(errorBox);
-      }
-    }
   }
 }

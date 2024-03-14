@@ -10,11 +10,15 @@
   font-weight: 400;
   background-color: rgb(205, 141, 149);
   border: 4px solid #bb945f;
-  color: rgb(49, 27, 30);
+  color: grey;
   cursor: pointer;
   transform: scale(1);
   transition: all ease 0.4s;
   margin-top: 50px;
+}
+
+.button-open {
+  color: rgb(49, 27, 30);
 }
 
 .button-open:hover {
