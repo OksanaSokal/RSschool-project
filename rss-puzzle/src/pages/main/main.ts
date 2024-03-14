@@ -74,7 +74,7 @@ export default class MainView extends View {
 
     this.button = new ButtonView(paramsButton);
     this.button.buttonElement.addEventListener('click', () => {
-      this.button.addLocalStorage(this.firstNameInput.value, this.lastNameInput.value);
+      ButtonView.addLocalStorage(this.firstNameInput.value, this.lastNameInput.value);
     });
     createForm.addElement(this.button);
 
@@ -109,5 +109,6 @@ export default class MainView extends View {
 
       return firstNameValid && lastNameValid;
     }
+    return false;
   }
 }

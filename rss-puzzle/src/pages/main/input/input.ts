@@ -77,6 +77,7 @@ export default class InputView extends ElementCreator {
   }
 
   public addLength(value: string) {
-    return (this.inputElement.min = value);
+    this.inputElement.min = value;
+    return this.inputElement.min;
   }
 }

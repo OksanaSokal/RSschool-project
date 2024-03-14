@@ -25,13 +25,10 @@ export default class ButtonView extends ElementCreator {
     if (firstEl) {
       this.buttonElement.classList.add('button-open');
       this.buttonElement.disabled = false;
-      this.buttonElement.addEventListener('click', () => {
-        console.log('ok');
-      });
     }
   }
 
-  public addLocalStorage(firstname: string, lastname: string) {
+  public static addLocalStorage(firstname: string, lastname: string): void {
     const user = {
       name: firstname,
       surname: lastname,
